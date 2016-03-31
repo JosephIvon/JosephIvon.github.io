@@ -57,15 +57,19 @@
 
 
 
-<meta name="description" content="iOS developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="凡文波的个人博客">
-<meta property="og:url" content="https://JosephIvon.github.io/index.html">
+<meta name="description" content="一、什么是CocoaPods
+CocoaPods是iOS项目的依赖管理工具，该项目源码在Github上管理。开发iOS项目不可避免地要使用第三方开源库，CocoaPods的出现使得我们可以节省设置和第三方开源库的时间。在使用CocoaPods之前，开发项目需要用到第三方开源库的时候，我们需要1.把开源库的源代码复制到项目中2.添加一些依赖框架和动态库3.设置-ObjC，-fno-objc-arc等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cocoaPods安装使用和常见问题">
+<meta property="og:url" content="https://JosephIvon.github.io/2013/07/31/cocoaPods安装使用和常见问题/index.html">
 <meta property="og:site_name" content="凡文波的个人博客">
-<meta property="og:description" content="iOS developer">
+<meta property="og:description" content="一、什么是CocoaPods
+CocoaPods是iOS项目的依赖管理工具，该项目源码在Github上管理。开发iOS项目不可避免地要使用第三方开源库，CocoaPods的出现使得我们可以节省设置和第三方开源库的时间。在使用CocoaPods之前，开发项目需要用到第三方开源库的时候，我们需要1.把开源库的源代码复制到项目中2.添加一些依赖框架和动态库3.设置-ObjC，-fno-objc-arc等">
+<meta property="og:updated_time" content="2016-03-31T03:39:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="凡文波的个人博客">
-<meta name="twitter:description" content="iOS developer">
+<meta name="twitter:title" content="cocoaPods安装使用和常见问题">
+<meta name="twitter:description" content="一、什么是CocoaPods
+CocoaPods是iOS项目的依赖管理工具，该项目源码在Github上管理。开发iOS项目不可避免地要使用第三方开源库，CocoaPods的出现使得我们可以节省设置和第三方开源库的时间。在使用CocoaPods之前，开发项目需要用到第三方开源库的时候，我们需要1.把开源库的源代码复制到项目中2.添加一些依赖框架和动态库3.设置-ObjC，-fno-objc-arc等">
 
 
 
@@ -83,7 +87,7 @@
   };
 </script>
 
-  <title> 凡文波的个人博客 </title>
+  <title> cocoaPods安装使用和常见问题 | 凡文波的个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -104,9 +108,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -183,9 +185,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -205,107 +207,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/03/31/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-03-31T10:51:15+08:00" content="2016-03-31">
-              2016-03-31
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/07/31/cocoaPods安装使用和常见问题/" itemprop="url">
-                  cocoaPods安装使用和常见问题
-                </a>
+                cocoaPods安装使用和常见问题
               
             
           </h1>
@@ -344,9 +246,7 @@
       
 
       
-        
-          
-            <p>一、什么是CocoaPods</p>
+        <p>一、什么是CocoaPods</p>
 <p>CocoaPods是iOS项目的依赖管理工具，该项目源码在Github上管理。开发iOS项目不可避免地要使用第三方开源库，CocoaPods的出现使得我们可以节省设置和第三方开源库的时间。<br>在使用CocoaPods之前，开发项目需要用到第三方开源库的时候，我们需要<br>1.把开源库的源代码复制到项目中<br>2.添加一些依赖框架和动态库<br>3.设置-ObjC，-fno-objc-arc等参数<br>4.管理他们的更新<br>在使用CocoaPods后，我们只需要把用到的开源库放到一个名为Podfile的文件中，然后执行pod install.Cocoapods就会自动将这些第三方开源库的源码下载下来，并且为我们的工程设置好响应的系统依赖和编译参数。</p>
 <p>二、CocoaPods的原理</p>
 <p>CocoaPods的原理是将所有的依赖库都放到另一个名为Pods的项目中，然后让主项目依赖Pods项目，这样，源码管理工作都从主项目移到了Pods项目中。Pods项目最终会编译成一个名为libPods.a的文件，主项目只需要依赖这个.a文件即可。</p>
@@ -467,12 +367,12 @@ The dependency</code>AFNetworking ` is not used in any concrete target</p>
 <p>输出<br>RubyGems system software updated<br>表示gem更新完成</p>
 <p>[扩展4：ruby常用指令]<br>ruby -v #查看ruby 版本<br>ruby -e ‘’require”watir”; puts Watir::IE::VERSION’’ #查看watir版本<br>rvm list known #列出已知的ruby版本<br>rvm install 1.9.3<br>rvm use 1.9.3 | rvm use system<br>rvm use 1.9.3 –default<br>rvm list #列出本地ruby版本<br>rvm remove 1.9.2<br>具体详情见RVM实用指南  <a href="https://ruby-china.org/wiki/rvm-guide" target="_blank" rel="external">https://ruby-china.org/wiki/rvm-guide</a><br>gem -v #gem版本<br>gem source #gem资源<br>gem sources -a url ｜gem sources -r url #gem添加或删除配置源<br>gem update #更新所有包<br>gem update –system #更新RubyGems软件<br>gem install rake #安装rake,从本地或远程服务器</p>
 
-          
-        
       
     </div>
 
     <div>
+      
+        
       
     </div>
 
@@ -480,19 +380,32 @@ The dependency</code>AFNetworking ` is not used in any concrete target</p>
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/31/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -500,6 +413,10 @@ The dependency</code>AFNetworking ` is not used in any concrete target</p>
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -519,8 +436,17 @@ The dependency</code>AFNetworking ` is not used in any concrete target</p>
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -558,6 +484,17 @@ The dependency</code>AFNetworking ` is not used in any concrete target</p>
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -642,6 +579,11 @@ The dependency</code>AFNetworking ` is not used in any concrete target</p>
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
 
   
 
