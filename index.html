@@ -206,8 +206,8 @@
             
               
                 
-                <a class="post-title-link" href="/2013/07/31/CocoaPods安装和使用/" itemprop="url">
-                  CocoaPods安装和使用
+                <a class="post-title-link" href="/2016/05/22/CocoaPods安装和使用/" itemprop="url">
+                  未命名
                 </a>
               
             
@@ -220,8 +220,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-07-31T22:10:41+08:00" content="2013-07-31">
-              2013-07-31
+            <time itemprop="dateCreated" datetime="2016-05-22T16:50:31+08:00" content="2016-05-22">
+              2016-05-22
             </time>
           </span>
 
@@ -249,7 +249,9 @@
       
         
           
-            <h1 id="CocoaPods安装和使用"><a href="#CocoaPods安装和使用" class="headerlink" title="CocoaPods安装和使用"></a>CocoaPods安装和使用</h1><h2 id="一、什么是CocoaPods"><a href="#一、什么是CocoaPods" class="headerlink" title="一、什么是CocoaPods"></a>一、什么是CocoaPods</h2><p>CocoaPods是iOS项目的依赖管理工具，该项目源码在Github上管理。开发iOS项目不可避免地要使用第三方开源库，CocoaPods的出现使得我们可以节省设置和第三方开源库的时间。</p>
+            <hr>
+<p>title:cocoaPods安装和使用<br>date:2013年10月11日</p>
+<h1 id="cocoaPods安装和使用"><a href="#cocoaPods安装和使用" class="headerlink" title="cocoaPods安装和使用"></a>cocoaPods安装和使用</h1><h2 id="一、什么是CocoaPods"><a href="#一、什么是CocoaPods" class="headerlink" title="一、什么是CocoaPods"></a>一、什么是CocoaPods</h2><p>CocoaPods是iOS项目的依赖管理工具，该项目源码在Github上管理。开发iOS项目不可避免地要使用第三方开源库，CocoaPods的出现使得我们可以节省设置和第三方开源库的时间。</p>
 <p>在使用CocoaPods之前，开发项目需要用到第三方开源库的时候，我们需要：</p>
 <ul>
 <li>把开源库的源代码复制到项目中</li>
@@ -369,213 +371,6 @@ export LANG=en_US.UTF-8</code><br>然后再使用locale命令查看，已经改�
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/07/31/cocoaPods安装使用和常见问题/" itemprop="url">
-                  cocoaPods安装使用和常见问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-07-31T22:10:41+08:00" content="2013-07-31">
-              2013-07-31
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##一、什么是CocoaPods</p>
-<p>CocoaPods是iOS项目的依赖管理工具，该项目源码在Github上管理。开发iOS项目不可避免地要使用第三方开源库，CocoaPods的出现使得我们可以节省设置和第三方开源库的时间。<br>在使用CocoaPods之前，开发项目需要用到第三方开源库的时候，我们需要<br>1.把开源库的源代码复制到项目中<br>2.添加一些依赖框架和动态库<br>3.设置-ObjC，-fno-objc-arc等参数<br>4.管理他们的更新<br>在使用CocoaPods后，我们只需要把用到的开源库放到一个名为Podfile的文件中，然后执行pod install.Cocoapods就会自动将这些第三方开源库的源码下载下来，并且为我们的工程设置好响应的系统依赖和编译参数。</p>
-<p>##二、CocoaPods的原理</p>
-<p>CocoaPods的原理是将所有的依赖库都放到另一个名为Pods的项目中，然后让主项目依赖Pods项目，这样，源码管理工作都从主项目移到了Pods项目中。Pods项目最终会编译成一个名为libPods.a的文件，主项目只需要依赖这个.a文件即可。</p>
-<p>三、CocoaPods的安装</p>
-<p>CocoaPods可以方便地通过Mac自带的RubyGems安装。<br>打开Terminal(终端)，然后键入以下命令：<br>当前安装环境为Mac mini 10.8.5。Mac  OS本身自带Ruby</p>
-<p>CocoaPods可以方便地通过Mac自带的RubyGems安装。<br>打开Terminal(终端)，然后键入以下命令：<br>$sudo gem install -n /usr/local/bin cocoapods</p>
-<p>接下来进行安装，执行：<br>$ pod setup<br>Terminal会停留在 Setting up CocoaPods master repo 这个状态一段时间,是因为要进行下载安装,而且目录比较大,需要耐心等待一下.如果想加快速度,可使用cocoapods的镜像索引.（文章末尾附使用镜像索引的方法）</p>
-<p>安装成功后,你会看到:<br>Setup completed</p>
-<p>第一次安装会看到下面这句话卡住了很久<br>Setting up CocoaPods master repo<br>不要着急，其他他正在下载，我第一次用时也以为是卡了，但其实并没有,心急的哥们可以:</p>
-<p>右键新建窗口<br>$cd ~/.cocoapods/<br>$du -sh *</p>
-<p>失败原因1<br>ERROR:  While executing gem … (Errno::EPERM)<br>    Operation not permitted - /usr/bin/pod</p>
-<p>使用了原来的命令行，已失效<br>$ sudo gem install cocoapods</p>
-<p>失败原因2：<br>ERROR: Could not find a valid gem ‘cocoapods’ (&gt;= 0), here is why:<br>Unable to download data from <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a> - Errno::ETIMEDOUT: Operation timed out - connect(2) (<a href="https://rubygems.org/latest_specs.4.8.gz" target="_blank" rel="external">https://rubygems.org/latest_specs.4.8.gz</a>)<br>ERROR: Possible alternatives: cocoapods</p>
-<p>ruby的软件源rubygems.org因为使用亚马逊的云服务，被我天朝屏蔽了，需要更新一下ruby的源:<br>$ gem sources -l (查看当前ruby的源)<br>$ gem sources –remove <a href="https://rubygems.org/(移除默认官方Ruby镜像" target="_blank" rel="external">https://rubygems.org/(移除默认官方Ruby镜像</a>)<br>$ gem sources -a <a href="https://ruby.taobao.org/(把Ruby镜像指向taobao，避免被墙" target="_blank" rel="external">https://ruby.taobao.org/(把Ruby镜像指向taobao，避免被墙</a>)<br>$ gem sources -l（用来检查使用替换镜像位置成功）</p>
-<p>如果输出:<br><strong><em> CURRENT SOURCES </em></strong><a href="http://ruby.taobao.org/" target="_blank" rel="external">http://ruby.taobao.org/</a><br>ruby更新成功</p>
-<p>注意，更新完gem,必须重新执行初始化cocoapods命令：<br>$sudo gem install -n /usr/local/bin cocoapods</p>
-<p>如果还是有问题：<br>自定义GEM_HOME<br>命令行操作：<br>$ mkdir -p $HOME/Software/ruby<br>$ export GEM_HOME=$HOME/Software/ruby<br>$ gem install cocoapods<br>　　[…]<br>　　1 gem installed<br>$ export PATH=$PATH:$HOME/Sofware/ruby/bin<br>$ pod –version<br>　　0.39.0</p>
-<p>来检测一下<br>$pod search AFNetworking</p>
-<p>如果:<br>-&gt; AFNetworking (2.5.4) A delightful iOS and OS X networking framework.<br>pod ‘AFNetworking’, ‘~&gt; 2.5.4’ </p>
-<ul>
-<li>Homepage: <a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="external">https://github.com/AFNetworking/AFNetworking</a> - Source: <a href="https://github.com/AFNetworking/AFNetworking.git" target="_blank" rel="external">https://github.com/AFNetworking/AFNetworking.git</a> - Versions: 2.5.4, 2.5.3, 2.5.2, 2.5.1, 2.5.0, 2.4.1, 2.4.0, 2.3.1, 2.3.0, 2.2.4, 2.2.3, 2.2.2, 2.2.1, 2.2.0, 2.1.0, 2.0.3, 2.0.2, 2.0.1, 2.0.0, 2.0.0-RC3, 2.0.0-RC2, 2.0.0-RC1, 1.3.4, 1.3.3, 1.3.2, 1.3.1, 1.3.0, 1.2.1, 1.2.0, 1.1.0, 1.0.1, 1.0, 1.0RC3, 1.0RC2, 1.0RC1, 0.10.1, 0.10.0, 0.9.2, 0.9.1, 0.9.0, 0.7.0, 0.5.1 [master repo] - Subspecs: - AFNetworking/Serialization (2.5.4) - AFNetworking/Security (2.5.4) - AFNetworking/Reachability (2.5.4) - AFNetworking/NSURLConnection (2.5.4)<br>就说明成功了.<br>输入<br>$which pod</li>
-</ul>
-<p>输出<br>/usr/local/bin/pod<br>这样也可以检测是否安装成功.</p>
-<p>查看CocoaPods版本<br>$ pod –version<br>0.39.0</p>
-<p>##四、CocoaPods的使用</p>
-<p>进入工程所在的目录（工程根目录）<br>执行命令 touch Podfile<br>这句是说新建一个名为Podfile的文件（不能写成别的名字，也可以自己在工程根目录里面直接新建）</p>
-<p>然后对改文件进行编辑，执行命令<br>$open -e Podfile<br>或者<br>$vim Podfile<br>第一次执行这个命令,会有一个空白文件打开，可以先放在一边，<br>Podfile文件的格式应该如下：<br>platform :ios, ‘7.0’<br>pod ‘AMap2DMap’, ‘~&gt; 2.5.0’<br>pod ‘AFNetworking’, ‘~&gt; 2.5.3’<br>pod ‘SDWebImage’, ‘~&gt; 3.7.2’</p>
-<p>需要注意的几点：platform那一行，ios三个字母都要小写，而且与前面的冒号之间不能有间隔，后面的版本号也可以不写，但是有些开源库对版本是有要求的，比如要在6.0以上才能运行，遇到这样的开源库就需要写上版本号。</p>
-<p>platform下面就是Cocoapods需要集成的开源库，根据你的需要确定集成那些库。</p>
-<p>举个例子：<br>我要集成AFNetworking这个库类，需要在Cocoapods里面先搜索是否有需要的库，可以在Terminal中输入：<br>pod search AFNetworking<br>回车之后就可以看到和你搜索的关键字相关的一些库类，如图：</p>
-<p>02.png</p>
-<p>其中第一个就是我们需要的，把pod ‘AFNetworking’， ‘~&gt;2.5.3’<br>那一行复制到我们的Podfile文件中，保存修改。<br>然后在Terminal中执行 ：<br>pod install</p>
-<p>这样，AFNetworking就已经下载完成并且设置好了编译参数和依赖，以后使用的时候切记如下两点：<br>1.从此以后需要使用Cocoapods生成的 .xcworkspace文件来打开工程，而不是使用以前的.xcodeproj文件</p>
-<p>2.每次更改了Podfile文件，都需要重新执行一次pod update命令<br>ps:当执行pod install之后，除了Podfile，还会生成一个名为Podfile.lock的文件，它会锁定当前各依赖库的版本，之后即使多次执行pod install也不会更改版本，只有执行pod update才会改变Podfile.lock.在多人协作的时候，这样可以防止第三方库升级时候造成大家各自的第三方库版本不一致。所以在提交版本的时候不能把它落下，也不要添加到.gitignore中.</p>
-<p>如果你发现import的时候没有提示AFNetworking的文件，可以在target-Build Settings下修改“User Header Search Paths”项，新增${SRCROOT}并选择rcursive，如下图。<br>设置完成后就可以在文件中直接引用第三方库的文件并使用了。</p>
-<p>六、删除项目中已经配置的类库<br>首先新建一个名为CocoaPodsDemo的项目，然后cd到项目目录下新建一个Podfile文件，并编写该文件，内容如下：<br>platform:ios, ‘7.0’<br>pod ‘AFNetworking’, ‘~&gt; 2.1.0’<br>pod ‘JSONKit’, ‘~&gt; 1.5pre’<br>pod ‘MBProgressHUD’, ‘~&gt; 0.8’</p>
-<p>我们将要加入的JSONKit的版本从1.1升级到1.5 preview版。<br>然后pod install，可以看到安装是成功的。<br>打开CocoaPodsDemo.xcworkspace文件，编译一下，会出现报错：<br>原因是JSONKit类库出现了各种各样的问题。<br>这个时候，我们很自然想到要删掉这个类库，然后尝试使用低版本的JSONKit（这也是我在（一）中为什么用1.1作为示例的原因）。</p>
-<p>方法：<br>1.打开Podfile文件，删除JSONKit该行，即：</p>
-<p>platform:ios, ‘7.0’<br>pod ‘AFNetworking’, ‘~&gt; 2.1.0’<br>pod ‘JSONKit’, ‘~&gt; 1.5pre’（删除该行）<br>pod ‘MBProgressHUD’, ‘~&gt; 0.8’<br>（如果想换成1.1版本，将被删除的行改成pod ‘JSONKit-NoWarning’, ‘~&gt; 1.1’即可）</p>
-<p>2.cd到当前项目目录下，重新执行pod install命令。输出信息如下（留意Removing JSONKit）：<br>$ pod install<br>Analyzing dependenciesRemoving JSONKitDownloading dependenciesUsing AFNetworking (2.1.0)Using MBProgressHUD (0.8)Generating Pods projectIntegrating client project</p>
-<p>3.重新打开xcworkspace文件，可以看到JSONKit被移除，再次编译将会通过：</p>
-<p>##五、在项目中移除CocoaPods<br>如果你觉得CocoaPods让你的项目出现了问题，不好用甚至是恶心，想将其从项目中彻底移除，也有方法：</p>
-<p>1.删除工程文件夹下的Podfile、Podfile.lock和Pods文件夹。</p>
-<p>2.删除xcworkspace文件。</p>
-<p>3.打开xcodeproj文件，删除项目中的libpods.a和Pods.xcconfig引用：</p>
-<p>4.打开Build Phases选项，删除Check Pods Manifest.lock和Copy Pods Resources：</p>
-<p>完成，编译运行，无错通过。</p>
-<p>##六、常见问题</p>
-<p>1.[!] Invalid Podfile file: undefined local variable or method `en_US’ for #<pod::podfile:0x00000102a5d8b0>. Updating CocoaPods might fix the issue.</pod::podfile:0x00000102a5d8b0></p>
-<p>原因：单引号格式，可能是手动输入导致<br>解决办法：系统偏好设置-键盘-文本-将“使用智能引号和破折号”一项取消勾选-再将podfile里面的单（双）引号修改一下</p>
-<p>2.ArgumentError - invalid byte sequence in US-ASCII<br>原因：字符集错误<br>解决办法：<br>使用locale命令查看当前的字符集，如果都是zh，需要执行以下命令：<br>export LC_ALL=en_US.UTF-8<br>export LANG=en_US.UTF-8<br>然后再使用locale命令查看，已经改过来了</p>
-<p>[!] The YMTea [Debug] target overrides the OTHER_LDFLAGS build setting defined in `Pods/Target Support Files/Pods/Pods.debug.xcconfig’. This can lead to problems with the CocoaPods installation</p>
-<pre><code>- Use the $(inherited) flag, or
-- Remove the build settings from the target.
-</code></pre><p>[!] The YMTea [Release] target overrides the OTHER_LDFLAGS build setting defined in Pods/Target Support Files/Pods/Pods.release.xcconfig. This can lead to problems with the CocoaPods installation</p>
-<ul>
-<li>Use the <code>$(inherited)</code> flag, or</li>
-<li>Remove the build settings from the target.</li>
-</ul>
-<p>原因：我是在已有项目中集成Cocoapods的时候遇到这个问题，原因是项目 Target 中做了一些设置，CocoaPods 也做了默认的设置，如果两个设置结果不一致，就会造成问题。<br>解决方法：我想要使用 CocoaPods 中的设置，分别在我的项目中定义PODS_ROOT 和 Other Linker Flags的地方（build settings），把他们的值用$(inherited)替换掉，进入终端，执行 pod update<br>警告没了，回到 Xcode，build通过。<br>网上还流行另外一种简单粗暴的方法:点击项目文件 project.xcodeproj，右键显示包内容，用文本编辑器打开project.pbxproj，删除OTHER_LDFLAGS的地方，保存(这种我没试过)</p>
-<p>4.[!] Oh no, an error occurred.</p>
-<p>It appears to have originated from your Podfile at line 2.</p>
-<p>Search for existing GitHub issues similar to yours:<br><a href="https://github.com/CocoaPods/CocoaPods/search?q=%2FUsers%2Fxiao6%2FMusic%2FGI06%E5%AE%9E%E8%AE%AD%E8%8A%B8%E8%8C%97%E8%8C%B6%E5%8F%B6%2FYMTea%2FPodfile%3A2%3A+syntax+error%2C+unexpected+%27%3A%27%2C+expecting+end-of-input%0Aplatform+%3A+ios%2C+%277.0%27%0A++++++++++%5E&amp;type=Issues" target="_blank" rel="external">https://github.com/CocoaPods/CocoaPods/search?q=%2FUsers%2Fxiao6%2FMusic%2FGI06%E5%AE%9E%E8%AE%AD%E8%8A%B8%E8%8C%97%E8%8C%B6%E5%8F%B6%2FYMTea%2FPodfile%3A2%3A+syntax+error%2C+unexpected+%27%3A%27%2C+expecting+end-of-input%0Aplatform+%3A+ios%2C+%277.0%27%0A++++++++++%5E&amp;type=Issues</a></p>
-<p>If none exists, create a ticket, with the template displayed above, on:<br><a href="https://github.com/CocoaPods/CocoaPods/issues/new" target="_blank" rel="external">https://github.com/CocoaPods/CocoaPods/issues/new</a></p>
-<p>Be sure to first read the contributing guide for details on how to properly submit a ticket:<br><a href="https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md" target="_blank" rel="external">https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md</a></p>
-<p>Don’t forget to anonymize any private data!</p>
-<p>原因：这个问题比较蛋疼，弄了好久，仔细看发现就是因为Podfile文件里面 platform 那一行 冒号和ios之间多了一个空格。。。。其实这个错误在报错的时候ruby已经给出了，只是一开始没有好好看：</p>
-<p>03.png</p>
-<p>The dependency <code>` is not used in any concrete target
-The dependency</code>AFNetworking ` is not used in any concrete target</p>
-<ul>
-<li>1</li>
-<li><p>2</p>
-</li>
-<li><p>CocoaPods再遇困难，前几天电脑重装了系统，所有的开发工具就都装了最新的，当我用CocoaPods的时候，出了一个提示，大概就是我的版本不是 last version，然后给你提示了一个命令，直接复制即可，就是下面这个：</p>
-</li>
-</ul>
-<p>sudo gem install cocoapods –pre</p>
-<ul>
-<li>1</li>
-</ul>
-<p>安装cocoapods的预览版本，就会更新下来新的1.0.0.beta.2版本，如下所示：</p>
-<p>Successfully installed cocoapods-1.0.0.beta.2<br>Parsing documentation for cocoapods-1.0.0.beta.2</p>
-<ul>
-<li>1</li>
-<li>2</li>
-</ul>
-<p>很高兴啊，更新了新的版本，然而pod install就出错了，悲了个剧！出错如下：</p>
-<p>Updating local specs repositories<br>Analyzing dependencies<br>[!] The dependency <code>FMDB (~&gt; 2.3)</code> is not used in any concrete target.<br>The dependency <code>SDWebImage (~&gt; 3.6)</code> is not used in any concrete target.<br>The dependency <code>AFNetworking (~&gt; 2.3.0)</code> is not used in any concrete target.<br>The dependency <code>DACircularProgress (~&gt; 2.2.0)</code> is not used in any concrete target.<br>The dependency <code>MBProgressHUD (~&gt; 0.8)</code> is not used in any concrete target.<br>The dependency <code>PSTCollectionView (~&gt; 1.2.1)</code> is not used in any concrete target.<br>The dependency <code>HPGrowingTextView (~&gt; 1.1)</code> is not used in any concrete target.<br>The dependency <code>ProtocolBuffers (= 1.9.3)</code> is not used in any concrete target.<br>The dependency <code>leveldb-library (~&gt; 1.18.1)</code> is not used in any concrete target.<br>The dependency <code>SCLAlertView-Objective-C (~&gt; 0.7.5)</code> is not used in any concrete target.<br>The dependency <code>MWPhotoBrowser (~&gt; 1.4.1)</code> is not used in any concrete target.<br>The dependency <code>MMMarkdown (~&gt; 0.5)</code> is not used in any concrete target.<br>The dependency <code>MJExtension (~&gt; 2.5.16)</code> is not used in any concrete target.<br>The dependency <code>MJRefresh (~&gt; 2.4.12)</code> is not used in any concrete target.<br>The dependency <code>Masonry (~&gt; 0.6.3)</code> is not used in any concrete target.</p>
-<ul>
-<li>1我用的三方库比较多，挺长的，出这个错是告诉我们我们所用的库没有指定target，它不知道用在哪里，所以就给报错了，然后我去了cocoapods的官网看了下，cocoapods官网地址</li>
-</ul>
-<p>官网是这样给推荐的：</p>
-<p>在创建Podfile的时候，用这种格式使用，</p>
-<p>platform :ios, ‘8.0’<br>use_frameworks!</p>
-<p>target ‘MyApp’ do<br>  pod ‘AFNetworking’, ‘~&gt; 2.6’<br>  pod ‘ORStackView’, ‘~&gt; 3.0’<br>  pod ‘SwiftyJSON’, ‘~&gt; 2.3’</p>
-<p>end</p>
-<p>想运行<a href="https://github.com/gokush/GKCommerce中的代码，使用pod" target="_blank" rel="external">https://github.com/gokush/GKCommerce中的代码，使用pod</a> install –verbose –no-repo-update安装依赖库时总是出现提示Unable to find a specification for <code>xxxxx</code>的问题，在这里找到了解决方法：</p>
-<p>只需要把当前Pod的目录清理一下就行了。在终端执行以下命令：</p>
-<p>?</p>
-<p>1<br>2</p>
-<p>pod repo remove master<br>pod setup<br>然后又遇到了提示<code>ImageMagick</code> required by <code>Podfile</code>问题，按照<a href="https://github.com/gokush/GKCommerce/issues/2中给出的解决方法，指定版本号6.8.8-9就解决问题了。" target="_blank" rel="external">https://github.com/gokush/GKCommerce/issues/2中给出的解决方法，指定版本号6.8.8-9就解决问题了。</a></p>
-<p>最后当然还是要用pod install –verbose –no-repo-update才行，用pod install会出现一直Analyzing dependencies</p>
-<p>附：如何使用CocoaPods的镜像索引:</p>
-<p>所有项目的Podspec文件都托管在<a href="https://github.com/CocoaPods/Specs" target="_blank" rel="external">https://github.com/CocoaPods/Specs</a>,<br>第一次执行pod setup时,CocoaPods会将这些podspec索引文件更新到本地的~/.cocoapods目录下,<br>这个索引文件比较大,所以第一次更新时非常慢.<br>友好人士在国内的服务器建立了Cocoapods索引库的镜像,<br>所以执行索引跟新操作时候会快很多.具体操作方法如下:<br>$ pod repo remove master<br>$ pod repo add master <a href="https://gitcafe.com/akuandev/Specs.git" target="_blank" rel="external">https://gitcafe.com/akuandev/Specs.git</a><br>$ pod repo update<br>这是使用gitcafe上的镜像,将以上代码中的 <a href="https://gitcafe.com/akuandev/Specs.git" target="_blank" rel="external">https://gitcafe.com/akuandev/Specs.git</a></p>
-<p>替换成 <a href="http://git.oschina.net/akuandev/Specs.git" target="_blank" rel="external">http://git.oschina.net/akuandev/Specs.git</a> 即可使用oschina上的镜像。</p>
-<p>[扩展1：概念]<br>Ruby 是一种类似于 Python 和 Perl 的服务器端的面向对象的动态脚本语言。<br>rvm 全称Ruby Version Manager,  是一个非常好用的ruby版本管理以及安装工具.<br>ruby的其中一个“程序”叫rubygems，简称 gem，用来手动安装各种库。<br>bundle是rails框架里面安装Gemfile指定的各种库的工具.</p>
-<p>[扩展2：RVM安装]<br>（关于RVM参考博客：<a href="http://www.cnblogs.com/hongfei/p/3678123.html" target="_blank" rel="external">http://www.cnblogs.com/hongfei/p/3678123.html</a><br><a href="http://www.cnblogs.com/wangyuyu/archive/2013/07/30/3224852.html）" target="_blank" rel="external">http://www.cnblogs.com/wangyuyu/archive/2013/07/30/3224852.html）</a><br>使用官方推荐的方法安装:<br>$ curl -L <a href="https://get.rvm.io" target="_blank" rel="external">https://get.rvm.io</a> | bash -s stable</p>
-<p>期间可能会问你sudo管理员密码，以及自动通过homebrew安装依赖包，等待一段时间后就可以成功安装好 RVM。<br>然后，载入 RVM 环境（新开 Termal 就不用这么做了，会自动重新载入的）<br>$ source ~/.rvm/scripts/rvm</p>
-<p>检查一下是否安装正确<br>$ rvm -v</p>
-<p>会输出:<br>rvm 1.26.11 (latest) by Wayne E. Seguin <a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#58;&#119;&#97;&#121;&#110;&#101;&#x65;&#115;&#101;&#103;&#117;&#105;&#x6e;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;">&#119;&#97;&#121;&#110;&#101;&#x65;&#115;&#101;&#103;&#117;&#105;&#x6e;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;</a>, Michal Papis <a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#58;&#x6d;&#112;&#97;&#x70;&#x69;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#x6d;&#112;&#97;&#x70;&#x69;&#115;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;</a> [<a href="https://rvm.io/" target="_blank" rel="external">https://rvm.io/</a>]</p>
-<p>RVM 装好以后，需要执行下面的命令将指定版本的 Ruby 设置为系统默认版本<br>$ rvm 2.0.0 –default</p>
-<p>同样，也可以用其他版本号，前提是你有用 rvm install 安装过那个版本<br>这个时候你可以测试是否正确<br>$ ruby -v<br>输出<br>ruby 2.0.0p247 (2013-06-27 revision 41674) [x86_64-darwin13.0.0]　　　　$ gem -v　　　　2.1.6</p>
-<p>[扩展3：gem更新]<br>这个网址可以查看到最新版本的gem<br><a href="https://rubygems.org/gems/rubygems-update" target="_blank" rel="external">https://rubygems.org/gems/rubygems-update</a></p>
-<p>查看当前安装的gem版本<br>$gem -v</p>
-<p>升级gem<br>sudo gem update –system -n/usr/local/bin</p>
-<p>输出<br>RubyGems system software updated<br>表示gem更新完成</p>
-<p>[扩展4：ruby常用指令]<br>ruby -v #查看ruby 版本<br>ruby -e ‘’require”watir”; puts Watir::IE::VERSION’’ #查看watir版本<br>rvm list known #列出已知的ruby版本<br>rvm install 1.9.3<br>rvm use 1.9.3 | rvm use system<br>rvm use 1.9.3 –default<br>rvm list #列出本地ruby版本<br>rvm remove 1.9.2<br>具体详情见RVM实用指南  <a href="https://ruby-china.org/wiki/rvm-guide" target="_blank" rel="external">https://ruby-china.org/wiki/rvm-guide</a><br>gem -v #gem版本<br>gem source #gem资源<br>gem sources -a url ｜gem sources -r url #gem添加或删除配置源<br>gem update #更新所有包<br>gem update –system #更新RubyGems软件<br>gem install rake #安装rake,从本地或远程服务器</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -617,7 +412,7 @@ The dependency</code>AFNetworking ` is not used in any concrete target</p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
