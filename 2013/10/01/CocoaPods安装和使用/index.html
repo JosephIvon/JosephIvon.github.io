@@ -73,11 +73,11 @@
 把开源库的源代码复制到项目中
 添加一些依赖框架和动态库
 设置-Ob">
-<meta property="og:image" content="https://JosephIvon.github.io/Users/fanwenbo/Desktop/MyBlog/blog/source/_posts/images/cocoaPods_setup.png">
-<meta property="og:image" content="https://JosephIvon.github.io/Users/fanwenbo/Desktop/MyBlog/blog/source/_posts/images/屏幕快照 2016-05-22 下午9.15.34.png">
-<meta property="og:image" content="https://JosephIvon.github.io/Users/fanwenbo/Desktop/MyBlog/blog/source/_posts/images/屏幕快照 2016-05-22 下午9.25.23.png">
-<meta property="og:image" content="https://JosephIvon.github.io/Users/fanwenbo/Desktop/MyBlog/blog/source/_posts/images/屏幕快照 2016-05-22 下午9.46.50.png">
-<meta property="og:updated_time" content="2016-05-22T15:33:27.000Z">
+<meta property="og:image" content="http://7xqh31.com1.z0.glb.clouddn.com/cocoaPods_setup.png">
+<meta property="og:image" content="http://7xqh31.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-22%20%E4%B8%8B%E5%8D%889.15.34.png">
+<meta property="og:image" content="http://7xqh31.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-22%20%E4%B8%8B%E5%8D%889.25.23.png">
+<meta property="og:image" content="http://7xqh31.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-22%20%E4%B8%8B%E5%8D%889.46.50.png">
+<meta property="og:updated_time" content="2016-05-23T01:37:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cocoaPods安装使用和常见问题">
 <meta name="twitter:description" content="cocoaPods安装使用和常见问题一、什么是CocoaPodsCocoaPods是iOS项目的依赖管理工具，该项目源码在Github上管理。开发iOS项目不可避免地要使用第三方开源库，CocoaPods的出现使得我们可以节省设置和第三方开源库的时间。
@@ -86,7 +86,7 @@
 把开源库的源代码复制到项目中
 添加一些依赖框架和动态库
 设置-Ob">
-<meta name="twitter:image" content="https://JosephIvon.github.io/Users/fanwenbo/Desktop/MyBlog/blog/source/_posts/images/cocoaPods_setup.png">
+<meta name="twitter:image" content="http://7xqh31.com1.z0.glb.clouddn.com/cocoaPods_setup.png">
 
 
 
@@ -300,7 +300,7 @@ http://ruby.taobao.org/</code></p>
 <p>查看cocoaPods版本，验证是否初始化成功<br><code>pod --version</code><br>我的打印结果：0.39.0</p>
 <h2 id="四、CocoaPods的使用"><a href="#四、CocoaPods的使用" class="headerlink" title="四、CocoaPods的使用"></a>四、CocoaPods的使用</h2><h3 id="利用CocoaPods，在项目中导入AFNetworking类库"><a href="#利用CocoaPods，在项目中导入AFNetworking类库" class="headerlink" title="利用CocoaPods，在项目中导入AFNetworking类库"></a>利用CocoaPods，在项目中导入AFNetworking类库</h3><p>AFNetworking类库在GitHub地址是：<a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="external">https://github.com/AFNetworking/AFNetworking</a></p>
 <p>为了确定AFNetworking是否支持CocoaPods，可以用CocoaPods的搜索功能验证一下。在终端中输入：<br><code>pod search AFNetworking</code></p>
-<p>我们会在终端中看到关于AFNetworking相关类库的一些信息。找到AFNetworking类库，如下：<br> <img src="/Users/fanwenbo/Desktop/MyBlog/blog/source/_posts/images/cocoaPods_setup.png" alt="cocoaPods_setup"></p>
+<p>我们会在终端中看到关于AFNetworking相关类库的一些信息。找到AFNetworking类库，如下：<br> <img src="http://7xqh31.com1.z0.glb.clouddn.com/cocoaPods_setup.png" alt="cocoaPods_setup"></p>
 <p>这说明，AFNetworking是支持CocoaPods，所以我们可以利用CocoaPods将AFNetworking导入你的项目中。</p>
 <ul>
 <li>1、先利用Xcode创建一个名字CocoaPodsDemo的项目，通过终端进入这个工程所在的根目录（cd + 拖拽CocoaPodsDemo文件夹到终端，再回车）</li>
@@ -316,13 +316,13 @@ http://ruby.taobao.org/</code></p>
 <p>当终端打印出下面信息就表示初始化第三方库成功了：<br><code>Pod installation complete! There is 1 dependency from the Podfile and 1 total
 pod installed.</code></p>
 <p>同时终端还会打印这样一句提示：<br><code>[!] Please close any current Xcode sessions and use &#39;CocoaPodsDemo.xcworkspace&#39; for this project from now on.</code><br>表示以后打开项目就用 CocoaPodsDemo.xcworkspace 打开，而不是之前的.xcodeproj文件。</p>
-<p>点击 CocoaPodsDemo.xcworkspace 打开之后工程之后，项目Xcode目录结构如下图：<br><img src="/Users/fanwenbo/Desktop/MyBlog/blog/source/_posts/images/屏幕快照 2016-05-22 下午9.15.34.png" alt="屏幕快照 2016-05-22 下午9.15.34"></p>
+<p>点击 CocoaPodsDemo.xcworkspace 打开之后工程之后，项目Xcode目录结构如下图：<br><img src="http://7xqh31.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-22%20%E4%B8%8B%E5%8D%889.15.34.png" alt="屏幕快照 2016-05-22 下午9.15.34"></p>
 <p>这样，AFNetworking就已经下载完成并且设置好了编译参数和依赖，在你的项目任意代码文件中输入：<br><code>#import &lt;AFNetworking.h&gt;</code><br>编译不报错就表示导入成功了。如下图：</p>
 <p>以后使用的时候切记如下三点：</p>
 <ul>
 <li>1.从此以后需要使用Cocoapods生成的 .xcworkspace文件来打开工程，而不是使用以前的.xcodeproj文件</li>
 <li>2.每次更改了Podfile文件，都需要重新执行一次pod update命令</li>
-<li>3.如果你发现import的时候没有提示AFNetworking的文件，可以在target-Build Settings下修改“User Header Search Paths”项，新增${SRCROOT}并选择rcursive，如下图:<br><img src="/Users/fanwenbo/Desktop/MyBlog/blog/source/_posts/images/屏幕快照 2016-05-22 下午9.25.23.png" alt="屏幕快照 2016-05-22 下午9.25.23"><br>设置完成后就可以在文件中直接引用第三方库的文件并使用了。<br>(注意，此时再引用第三方库的头文件要使用<code>#import &quot;AFNetworking.h&quot;</code>)</li>
+<li>3.如果你发现import的时候没有提示AFNetworking的文件，可以在target-Build Settings下修改“User Header Search Paths”项，新增${SRCROOT}并选择rcursive，如下图:<br><img src="http://7xqh31.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-22%20%E4%B8%8B%E5%8D%889.25.23.png" alt="屏幕快照 2016-05-22 下午9.25.23"><br>设置完成后就可以在文件中直接引用第三方库的文件并使用了。<br>(注意，此时再引用第三方库的头文件要使用<code>#import &quot;AFNetworking.h&quot;</code>)</li>
 </ul>
 <p>ps:当执行pod install之后，除了Podfile，还会生成一个名为Podfile.lock的文件，它会锁定当前各依赖库的版本，之后即使多次执行pod install也不会更改版本，只有执行pod update才会改变Podfile.lock.在多人协作的时候，这样可以防止第三方库升级时候造成大家各自的第三方库版本不一致。所以在提交版本的时候不能把它落下，也不要添加到.gitignore中.</p>
 <p>#五、常见问题</p>
@@ -332,7 +332,7 @@ pod installed.</code></p>
 <li><p>2、字符集错误<br><code>ArgumentError - invalid byte sequence in US-ASCII</code><br>解决办法：使用locale命令查看当前的字符集，如果都是zh，需要执行以下命令：<br><code>export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8</code><br>然后再使用locale命令查看，已经改过来了 </p>
 </li>
-<li><p>3、项目 Target 中做了一些设置，CocoaPods 也做了默认的设置,两者设置不一致。<br><img src="/Users/fanwenbo/Desktop/MyBlog/blog/source/_posts/images/屏幕快照 2016-05-22 下午9.46.50.png" alt="屏幕快照 2016-05-22 下午9.46.50"></p>
+<li><p>3、项目 Target 中做了一些设置，CocoaPods 也做了默认的设置,两者设置不一致。<br><img src="http://7xqh31.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-22%20%E4%B8%8B%E5%8D%889.46.50.png" alt="屏幕快照 2016-05-22 下午9.46.50"></p>
 </li>
 </ul>
 <p>解决方法：我想要使用 CocoaPods 中的设置，分别在我的项目中定义PODS_ROOT 和 Other Linker Flags的地方（build settings），把他们的值用$(inherited)替换掉，进入终端，执行 pod update<br>警告没了，回到 Xcode，build通过。<br>网上还流行另外一种简单粗暴的方法:点击项目文件 project.xcodeproj，右键显示包内容，用文本编辑器打开project.pbxproj，删除OTHER_LDFLAGS的地方，保存(这种我没试过)</p>
