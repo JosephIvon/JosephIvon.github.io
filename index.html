@@ -206,6 +206,379 @@
             
               
                 
+                <a class="post-title-link" href="/2015/07/18/ios多线程技术/" itemprop="url">
+                  iOS多线程技术
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-18T22:55:26+08:00" content="2015-07-18">
+              2015-07-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="iOS多线程技术"><a href="#iOS多线程技术" class="headerlink" title="iOS多线程技术"></a>iOS多线程技术</h1><h2 id="导图"><a href="#导图" class="headerlink" title="导图"></a>导图</h2><p><img src="http://ww3.sinaimg.cn/large/762694bagw1f46q2rusl5j20ec0ctgmb.jpg" alt=""></p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li>进程：  一个具有一定独立功能的程序关于某个数据集合的一次运行活动。可以理解成一个运行中的应用程序。</li>
+<li>线程：  程序执行流的最小单元，线程是进程中的一个实体。  </li>
+<li>同步：  只能在当前线程按先后顺序依次执行，不开启新线程。</li>
+<li>异步：  可以在当前线程开启多个新线程执行，可不按顺序执行。</li>
+<li>队列：  装载线程任务的队形结构。  </li>
+<li>并发：  线程执行可以同时一起进行执行。</li>
+<li>串行：  线程执行只能依次逐一先后有序的执行。  </li>
+</ol>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h3 id="什么是多线程"><a href="#什么是多线程" class="headerlink" title="什么是多线程"></a>什么是多线程</h3><pre><code>1个进程中可以开启多条线程，每条线程可以并行（同时）执行不同的任务
+</code></pre><h3 id="多线程的原理"><a href="#多线程的原理" class="headerlink" title="多线程的原理"></a>多线程的原理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">同一时间，CPU只能处理1条线程，只有1条线程在工作（执行）</span><br><span class="line">多线程并发（同时）执行，其实是CPU快速地在多条线程之间调度（切换）</span><br><span class="line">如果CPU调度线程的时间足够快，就造成了多线程并发执行的假象</span><br></pre></td></tr></table></figure>
+<p>思考：如果线程非常非常多，会发生什么情况？<br></p>
+<pre><code>CPU会在N多线程之间调度，CPU会累死，消耗大量的CPU资源
+每条线程被调度执行的频次会降低（线程的执行效率降低）
+</code></pre><h3 id="多线程的优缺点"><a href="#多线程的优缺点" class="headerlink" title="多线程的优缺点"></a>多线程的优缺点</h3><ul>
+<li>多线程的优点<br></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 能适当提高程序的执行效率</span><br><span class="line">- 能适当提高资源利用率（CPU、内存利用率)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>多线程的缺点<br></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 开启线程需要占用一定的内存空间（默认情况下，主线程占用1M，子线程占用512KB），如果开启大量的线程，会占用大量的内存空间，降低程序的性能</span><br><span class="line">- 线程越多，CPU在调度线程上的开销就越大</span><br><span class="line">- 程序设计更加复杂：比如线程之间的通信、多线程的数据共享</span><br></pre></td></tr></table></figure>
+<ul>
+<li>多线程在iOS开发中的应用<br></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- 主线程:一个iOS程序运行后，默认会开启1条线程，称为“主线程”或“UI线程”</span><br><span class="line">- 主线程的主要作用:</span><br><span class="line">   1) 显示\刷新UI界面</span><br><span class="line">   2) 处理UI事件（比如点击事件、滚动事件、拖拽事件等）</span><br><span class="line"> </span><br><span class="line">- 主线程的使用注意:别将比较耗时的操作放到主线程中。</span><br><span class="line">- 耗时操作会卡住主线程，严重影响UI的流畅度，给用户一种“卡”的坏体验</span><br></pre></td></tr></table></figure>
+<h3 id="iOS-中其实目前有-4-套多线程方案，他们分别是："><a href="#iOS-中其实目前有-4-套多线程方案，他们分别是：" class="headerlink" title="iOS 中其实目前有 4 套多线程方案，他们分别是："></a>iOS 中其实目前有 4 套多线程方案，他们分别是：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- Pthreads</span><br><span class="line">- NSThread</span><br><span class="line">- GCD</span><br><span class="line">- NSOperation &amp; NSOperationQueue</span><br></pre></td></tr></table></figure>
+<h3 id="iOS多线程对比"><a href="#iOS多线程对比" class="headerlink" title="iOS多线程对比"></a>iOS多线程对比</h3><p>####1. pthread<br>一套通用的多线程API，适用Unix\Linux\Windows等系统。<br>1）优点：跨平台\可移植。<br>2）缺点：适用难度大。</p>
+<p>####2. NSThread<br>每个NSThread对象对应一个线程，真正最原始的线程。<br>1）优点：NSThread 轻量级最低，相对简单。<br>2）缺点：手动管理所有的线程活动，如生命周期、线程同步、睡眠等。</p>
+<p>####3. NSOperation<br>自带线程管理的抽象类。<br>1）优点：自带线程周期管理，操作上可更注重自己逻辑。<br>2）缺点：面向对象的抽象类，只能实现它或者使用它定义好的两个子类：NSInvocationOperation 和 NSBlockOperation。</p>
+<p>####4. GCD<br>Grand Central Dispatch (GCD)是Apple开发的一个多核编程的解决方法。<br>1）优点：最高效，避开并发陷阱。<br>2）缺点：基于C实现。</p>
+<p>####5. 选择小结<br>1）简单而安全的选择NSOperation实现多线程即可。<br>2）处理大量并发数据，又追求性能效率的选择GCD。<br>3）NSThread本人选择基本上是在做些小测试上使用，当然也可以基于此造个轮子。</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>###1. pthread<br><strong>Linux</strong>系统下的多线程遵循<strong>POSIX</strong>线程接口，称为<strong>pthread</strong>。编写<strong>Linux</strong>下的多线程程序，需要使用头文件 <code>pthread.h</code> ，连接时需要使用库 <code>libpthread.a</code> 。与<strong>vxworks</strong>上任务的概念类似，都是调度的最小单元，都有共享的堆、栈、代码区、全局变量等。</p>
+<h4 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h4><pre><code>int  pthread_create(pthread_t  *  thread,
+                    pthread_attr_t * attr,
+                    void * (*start_routine)(void *),
+                    void * arg)
+</code></pre><ul>
+<li>thread：返回创建的线程的ID</li>
+<li>attr：线程属性，调度策略、优先级等都在这里设置，如果为NULL则表示用默认属性</li>
+<li>start_routine：线程入口函数，可以返回一个void*类型的返回值，该返回值可由pthread_join()捕获</li>
+<li>arg：传给start_routine的参数， 可以为NULL   </li>
+<li>返回值：成功返回0</li>
+</ul>
+<p>iOS多线程重点不在pthread，感兴趣可以参看博客：<a href="http://blog.chinaunix.net/uid-20528014-id-333508.html" target="_blank" rel="external">pthread编程基础 </a></p>
+<p>###2. NSThread<br><strong>2.1）三种实现开启线程方式：</strong><br>①.动态实例化  </p>
+<pre><code>NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadImageSource:) object:imgUrl];
+thread.threadPriority = 1;// 设置线程的优先级(0.0 - 1.0，1.0最高级)
+[thread start];  
+</code></pre><p>②.静态实例化  </p>
+<pre><code>[NSThread detachNewThreadSelector:@selector(loadImageSource:) toTarget:self withObject:imgUrl];   
+</code></pre><p>③.隐式实例化    </p>
+<pre><code>[self performSelectorInBackground:@selector(loadImageSource:) withObject:imgUrl];  
+</code></pre><p>有了以上的知识点，可以试探了一下编写场景选择中的“图片加载”的基本功能了。  </p>
+<p><strong>2.2）使用这三种方式编写代码</strong></p>
+<pre><code>//动态创建线程
+-(void)dynamicCreateThread{
+
+    NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadImageSource:) object:imgUrl];
+    thread.threadPriority = 1;// 设置线程的优先级(0.0 - 1.0，1.0最高级)
+    thread.name = @&quot;下载&quot;;// 设置线程的名字
+    [thread start];
+}
+
+//静态创建线程
+-(void)staticCreateThread{
+
+    [NSThread detachNewThreadSelector:@selector(loadImageSource:) toTarget:self withObject:imgUrl];
+
+}
+
+//隐式创建并启动线程
+-(void)implicitCreateThread{
+
+    [self performSelectorInBackground:@selector(loadImageSource:) withObject:imgUrl];
+}
+
+-(void)loadImageSource:(NSString *)url{
+    NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+    UIImage *image = [UIImage imageWithData:imgData];
+    if (imgData!=nil) {
+        [self performSelectorOnMainThread:@selector(refreshImageView:) withObject:image waitUntilDone:YES];
+    }else{
+        NSLog(@&quot;there no image data&quot;);
+    }
+
+}
+
+-(void)refreshImageView:(UIImage *)image{
+    [self.imageView setImage:image];
+}
+</code></pre><p><strong>2.3）看先效果图</strong><br><img src="https://github.com/minggo620/iOSMutipleThread/blob/master/picture/mutiplethread1.gif?raw=true" alt="NSThread多线程加载效果">  </p>
+<p><strong>1.4）NSThread的拓展认识</strong><br>①获取当前线程    </p>
+<pre><code>NSThread *current = [NSThread currentThread];   
+</code></pre><p>②获取主线程  </p>
+<pre><code>NSThread *main = [NSThread mainThread];   
+</code></pre><p>③暂停当前线程  </p>
+<pre><code>[NSThread sleepForTimeInterval:2];  
+</code></pre><p>  或者：</p>
+<pre><code>NSDate *date = [NSDate dateWithTimeInterval:2 sinceDate:[NSDate date]];
+[NSThread sleepUntilDate:date];
+</code></pre><p>④线程之间通信  </p>
+<pre><code>//在指定线程上执行操作
+[self performSelector:@selector(run) onThread:thread withObject:nil waitUntilDone:YES]; 
+//在主线程上执行操作
+[self performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:YES]; 
+//在当前线程执行操作
+[self performSelector:@selector(run) withObject:nil]; 
+</code></pre><p>显然动态创建线程多了几行代码，其实就是那几行代码，如果重复编写数遍那是一件多么不爽的事情。首次看来静态方法创作线程和隐式创建线程显得比较方便，简洁。从知识结构来说，讲到这里应该讲述一下<strong>线程锁</strong>，鉴于并不常用和文章过长就不在此详细讲述，有兴趣可以自行查阅。</p>
+<p>###3. NSOperation<br>主要的实现方式：结合NSOperation和NSOperationQueue实现多线程编程。</p>
+<ul>
+<li>实例化NSOperation的子类，绑定执行的操作。</li>
+<li>创建NSOperationQueue队列，将NSOperation实例添加进来。</li>
+<li>系统会自动将NSOperationQueue队列中检测取出和执行NSOperation的操作。    </li>
+</ul>
+<p><strong>3.1）使用NSOperation的子类实现创作线程。</strong><br>①.NSInvocationOperation创建线程。  </p>
+<pre><code>NSInvocationOperation *invocationOperation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(loadImageSource:) object:imgUrl];
+//[invocationOperation start];//直接会在当前线程主线程执行
+NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+[queue addOperation:invocationOperation];  
+</code></pre><p>②.NSBlockOperation创建线程  </p>
+<pre><code>NSBlockOperation *blockOperation = [NSBlockOperation blockOperationWithBlock:^{
+    [self loadImageSource:imgUrl];
+}];
+
+NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+[queue addOperation:blockOperation];  
+</code></pre><p>③.自定义NSOperation子类实现main方法  </p>
+<p>实现main方法  </p>
+<pre><code>-(void)main {    
+    // Do somthing
+} 
+</code></pre><ul>
+<li><p>创建线程实例并添加到队列中    </p>
+<p>  LoadImageOperation *imageOperation = [LoadImageOperation new];<br>  imageOperation.loadDelegate = self;<br>  imageOperation.imgUrl = imgUrl;</p>
+<p>  NSOperationQueue *queue = [[NSOperationQueue alloc]init];<br>  [queue addOperation:imageOperation];</p>
+</li>
+</ul>
+<p><strong>3.2）使用这三种方式编写代码</strong></p>
+<p>创建各个实例并添加到队列表当中  </p>
+<pre><code>//使用子类NSInvocationOperation
+-(void)useInvocationOperation{
+    NSInvocationOperation *invocationOperation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(loadImageSource:) object:imgUrl];
+    //[invocationOperation start];//直接会在当前线程主线程执行
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [queue addOperation:invocationOperation];
+
+}
+
+//使用子类NSBlockOperation
+-(void)useBlockOperation{
+
+    NSBlockOperation *blockOperation = [NSBlockOperation blockOperationWithBlock:^{
+        [self loadImageSource:imgUrl];
+    }];
+
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [queue addOperation:blockOperation];
+
+}
+//使用继承NSOperation
+-(void)useSubclassOperation{
+
+    LoadImageOperation *imageOperation = [LoadImageOperation new];
+    imageOperation.loadDelegate = self;
+    imageOperation.imgUrl = imgUrl;
+
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [queue addOperation:imageOperation];
+}
+
+-(void)loadImageSource:(NSString *)url{
+
+    NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+    UIImage *image = [UIImage imageWithData:imgData];
+    if (imgData!=nil) {
+        [self performSelectorOnMainThread:@selector(refreshImageView1:) withObject:image waitUntilDone:YES];
+    }else{
+        NSLog(@&quot;there no image data&quot;);
+    }
+
+}
+
+-(void)refreshImageView1:(UIImage *)image{
+    [self.loadingLb setHidden:YES];
+    [self.imageView setImage:image];
+}
+
+-(void) loadImageFinish:(UIImage *)image{
+    [self.loadingLb setHidden:YES];
+    [self.imageView setImage:image];
+}
+</code></pre><p>附自定义NSOperation子类main主要代码实现  </p>
+<pre><code>- (void)main {
+
+    if (self.isCancelled) return;
+
+    NSURL *url = [NSURL URLWithString:self.imgUrl];
+    NSData *imageData = [NSData dataWithContentsOfURL:url];
+
+    if (self.loadDelegate!=nil&amp;&amp;[self.loadDelegate respondsToSelector:@selector(loadImageFinish:)]) {
+
+        [(NSObject *)self.loadDelegate performSelectorOnMainThread:@selector(loadImageFinish:) withObject:image waitUntilDone:NO];
+    }
+}
+</code></pre><p><strong>3.3）看先效果图</strong><br><img src="https://github.com/minggo620/iOSMutipleThread/blob/master/picture/mutiplethread2.gif?raw=true" alt="NSOperation多线程加载效果"></p>
+<p>###4. GCD多线程<br>GCD是Apple开发，据说高性能的多线程解决方案。既然这样，就细说一下这个解决方案。<br>进过Nsthread和NSOperation的讲述和上边的基础概念，可以开始组合用起来吧。<strong>并发队列</strong>、<strong>串行队列</strong>都用起来。<br><strong>4.1）分发队列种类(dispatch queue)</strong><br>①.UI主线程队列 main queue</p>
+<pre><code>dispatch_get_main_queue()  
+</code></pre><p>②.并行队列global dispatch queue  </p>
+<pre><code>dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)  
+</code></pre><p>这里的两个参数得说明一下：第一个参数用于指定优先级，分别使用DISPATCH_QUEUE_PRIORITY_HIGH和DISPATCH_QUEUE_PRIORITY_LOW两个常量来获取高和低优先级的两个queue；第二个参数目前未使用到，默认0即可</p>
+<p>③.串行队列serial queues  </p>
+<pre><code>dispatch_queue_create(&quot;minggo.app.com&quot;, NULL);  
+</code></pre><p><strong>4.2）6中多线程实现</strong><br>①后台执行线程创建</p>
+<pre><code>dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    [self loadImageSource:imgUrl1];
+});
+</code></pre><p>②UI线程执行(只是为了测试，长时间加载内容不放在主线程)</p>
+<pre><code>dispatch_async(dispatch_get_main_queue(), ^{
+    [self loadImageSource:imgUrl1];
+});
+</code></pre><p>③一次性执行(常用来写单例)    </p>
+<pre><code>static dispatch_once_t onceToken;
+dispatch_once(&amp;onceToken, ^{
+    [self loadImageSource:imgUrl1];
+});
+</code></pre><p>④并发地执行循环迭代  </p>
+<pre><code>dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+size_t count = 10;
+dispatch_apply(count, queue, ^(size_t i) {
+    NSLog(@&quot;循环执行第%li次&quot;,i);
+    [self loadImageSource:imgUrl1];
+});  
+</code></pre><p>⑤延迟执行  </p>
+<pre><code>double delayInSeconds = 2.0;
+dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    [self loadImageSource:imgUrl1];
+});  
+</code></pre><p>⑥自定义dispatch_queue_t</p>
+<pre><code>dispatch_queue_t urls_queue = dispatch_queue_create(&quot;minggo.app.com&quot;, NULL);
+dispatch_async(urls_queue, ^{
+    [self loadImageSource:imgUrl1];
+});
+</code></pre><p><strong>4.3）对比多任务执行</strong><br>异步加载图片是大部分app都要问题，那么加载图片是按循序加载完之后才刷新UI呢？还是不安顺序加载UI呢？显然大部分的希望各自加载各自的图片，各自刷新。以下就是模拟这两种场景。</p>
+<p>①先后执行，加载两张图片为例    </p>
+<pre><code>dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+    UIImage *image1 = [self loadImage:imgUrl1];
+    UIImage *image2 = [self loadImage:imgUrl2];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.imageview1.image = image1;
+        self.imageView2.image = image2;
+    });
+});  
+</code></pre><p>②并行队列执行，也是以加载两张图片为例  </p>
+<pre><code>dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+
+dispatch_async(queue, ^{
+
+    dispatch_group_t group = dispatch_group_create();
+
+    __block UIImage *image1 = nil;
+    __block UIImage *image2 = nil;
+
+
+    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        image1 = [self loadImage:imgUrl1];
+    });
+
+    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        image2 = [self loadImage:imgUrl2];
+    });
+
+
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        self.imageview1.image = image1;
+        self.imageView2.image = image2;
+
+    });
+});
+</code></pre><p>①中等到两张图片加载完成后一起刷新，②就是典型的异步并行的例子，不需要理会各自图片加载的先后问题，完成加载图片刷新UI即可。从加载图片中来说，第①种不太合适使用，但是对于在上边场景选择的时候的创作工具来说有很大的好处，首先得异步进行，然后异步中有得按顺序执行几个任务，比如上传章节内容。因此，我们可以灵活考虑使用这两多线程任务执行方式，实现各种场景。<br><strong>4.4）编码实现</strong><br>以上3.3的内容99%代码一样，就不提供一个稍微整体的代码了。看看下边的效果图吧。<br><strong>4.5）效果图如下</strong><br><img src="https://github.com/minggo620/iOSMutipleThread/blob/master/picture/mutiplethread3.gif?raw=true" alt="GCD多线程加载效果"> </p>
+<h2 id="源码地址"><a href="#源码地址" class="headerlink" title="源码地址"></a>源码地址</h2><h5 id="https-github-com-JosephIvon-learnGitHub-git"><a href="#https-github-com-JosephIvon-learnGitHub-git" class="headerlink" title="https://github.com/JosephIvon/learnGitHub.git"></a><strong><em><a href="https://github.com/JosephIvon/learnGitHub.git" target="_blank" rel="external">https://github.com/JosephIvon/learnGitHub.git</a></em></strong></h5>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/07/16/深入理解objective-c的runtime机制/" itemprop="url">
                   深入理解Objective-C的Runtime机制
                 </a>
@@ -320,27 +693,59 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- /// An opaque type that represents an instance variable.</span><br><span class="line">- typedef struct objc_ivar *Ivar;</span><br><span class="line">-</span><br><span class="line">- struct objc_ivar &#123;</span><br><span class="line">-     char *ivar_name                                          OBJC2_UNAVAILABLE;</span><br><span class="line">-     char *ivar_type                                          OBJC2_UNAVAILABLE;</span><br><span class="line">-     int ivar_offset                                          OBJC2_UNAVAILABLE;</span><br><span class="line">- #ifdef __LP64__</span><br><span class="line">-     int space                                                OBJC2_UNAVAILABLE;</span><br><span class="line">- #endif</span><br><span class="line">- &#125;</span><br></pre></td></tr></table></figure>
 <p><strong>Ivar</strong>其实就是一个指向<strong>objc_ivar</strong>结构体指针，它包含了变量名(<em>ivar_name</em>)、变量类型(<em>ivar_type</em>)等信息。</p>
 <h3 id="IMP"><a href="#IMP" class="headerlink" title="IMP"></a>IMP</h3><p>在上面讲<strong>Method</strong>时就说过，<strong>IMP</strong>本质上就是一个函数指针，指向方法的实现，在 <code>objc.h</code> 找到它的定义：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    - /// A pointer to the function of a method implementation.</span><br><span class="line">    - #if !OBJC_OLD_DISPATCH_PROTOTYPES</span><br><span class="line">    - typedef void (*IMP)(void /* id, SEL, ... */ );</span><br><span class="line">    - #else</span><br><span class="line">    - typedef id (*IMP)(id, SEL, ...);</span><br><span class="line">    - #endif</span><br><span class="line">```    </span><br><span class="line">当你向某个对象发送一条信息，可以由这个函数指针来指定方法的实现，它最终就会执行那段代码，这样可以绕开消息传递阶段而去执行另一个方法实现。</span><br><span class="line"></span><br><span class="line">### Cache</span><br><span class="line">顾名思义，**Cache**主要用来缓存，那它缓存什么呢？我们先在 `runtime.h` 文件看看它的定义：</span><br></pre></td></tr></table></figure>
-<pre><code>- typedef struct objc_cache *Cache                             OBJC2_UNAVAILABLE;
--
-- struct objc_cache {
--     unsigned int mask /* total = mask + 1 */                 OBJC2_UNAVAILABLE;
--     unsigned int occupied                                    OBJC2_UNAVAILABLE;
--     Method buckets[1]                                        OBJC2_UNAVAILABLE;
-- };
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">**Cache**其实就是一个存储**Method**的链表，主要是为了优化方法调用的性能。当对象**receiver**调用方法**message**时，首先根据对象**receiver**的**isa**指针查找到它对应的类，然后在类的**methodLists**中搜索方法，如果没有找到，就使用**super_class**指针到父类中的**methodLists**查找，一旦找到就调用方法。如果没有找到，有可能消息转发，也可能忽略它。但这样查找方式效率太低，因为往往一个类大概只有20%的方法经常被调用，占总调用次数的80%。所以使用**Cache**来缓存经常调用的方法，当调用方法时，优先在**Cache**查找，如果没有找到，再到**methodLists**查找。</span><br><span class="line"></span><br><span class="line">## 消息发送</span><br><span class="line">前面从**objc_msgSend**作为入口，逐步深入分析*Runtime*的数据结构，了解每个数据结构的作用和它们之间关系后，我们正式转入消息发送这个正题。&lt;br/&gt;</span><br><span class="line"></span><br><span class="line">**objc_msgSend函数**&lt;br/&gt;</span><br><span class="line">在前面已经提过，当某个对象使用语法 `[receiver message]` 来调用某个方法时，其实 `[receiver message]` 被编译器转化为：</span><br></pre></td></tr></table></figure>
+<pre><code>/// A pointer to the function of a method implementation.
+#if !OBJC_OLD_DISPATCH_PROTOTYPES
+typedef void (*IMP)(void /* id, SEL, ... */ );
+#else
+typedef id (*IMP)(id, SEL, ...);
+#endif   
+</code></pre><p>当你向某个对象发送一条信息，可以由这个函数指针来指定方法的实现，它最终就会执行那段代码，这样可以绕开消息传递阶段而去执行另一个方法实现。</p>
+<h3 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h3><p>顾名思义，<strong>Cache</strong>主要用来缓存，那它缓存什么呢？我们先在 <code>runtime.h</code> 文件看看它的定义：</p>
+<pre><code>typedef struct objc_cache *Cache                             OBJC2_UNAVAILABLE;
+
+struct objc_cache {
+    unsigned int mask /* total = mask + 1 */                 OBJC2_UNAVAILABLE;
+    unsigned int occupied                                    OBJC2_UNAVAILABLE;
+    Method buckets[1]                                        OBJC2_UNAVAILABLE;
+};
+</code></pre><p><strong>Cache</strong>其实就是一个存储<strong>Method</strong>的链表，主要是为了优化方法调用的性能。当对象<strong>receiver</strong>调用方法<strong>message</strong>时，首先根据对象<strong>receiver</strong>的<strong>isa</strong>指针查找到它对应的类，然后在类的<strong>methodLists</strong>中搜索方法，如果没有找到，就使用<strong>super_class</strong>指针到父类中的<strong>methodLists</strong>查找，一旦找到就调用方法。如果没有找到，有可能消息转发，也可能忽略它。但这样查找方式效率太低，因为往往一个类大概只有20%的方法经常被调用，占总调用次数的80%。所以使用<strong>Cache</strong>来缓存经常调用的方法，当调用方法时，优先在<strong>Cache</strong>查找，如果没有找到，再到<strong>methodLists</strong>查找。</p>
+<h2 id="消息发送"><a href="#消息发送" class="headerlink" title="消息发送"></a>消息发送</h2><p>前面从<strong>objc_msgSend</strong>作为入口，逐步深入分析<em>Runtime</em>的数据结构，了解每个数据结构的作用和它们之间关系后，我们正式转入消息发送这个正题。<br></p>
+<p><strong>objc_msgSend函数</strong><br><br>在前面已经提过，当某个对象使用语法 <code>[receiver message]</code> 来调用某个方法时，其实 <code>[receiver message]</code> 被编译器转化为：</p>
 <pre><code>- id objc_msgSend ( id self, SEL op, ... );
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">- 现在让我们看一下**objc_msgSend**它具体是如何发送消息：</span><br><span class="line"></span><br><span class="line">  - 1、首先根据**receiver**对象的**isa**指针获取它对应的**class**；</span><br><span class="line">  - 2、优先在**class的cache**查找**message**方法，如果找不到，再到**methodLists**查找；</span><br><span class="line">  - 3、如果没有在**class**找到，再到**super_class**查找；</span><br><span class="line">  - 4、一旦找到**message**这个方法，就执行它实现的**IMP**。</span><br><span class="line"></span><br><span class="line">![](http://ww2.sinaimg.cn/large/762694bagw1f46lsvffshj20980f474x.jpg)</span><br><span class="line"></span><br><span class="line">### self与super</span><br><span class="line">为了让大家更好地理解self和super，借用[sunnyxx博客](http://blog.sunnyxx.com)的[iOS程序员6级考试](http://blog.sunnyxx.com/2014/03/06/ios_exam_0_key/)一道题目：下面的代码分别输出什么？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        - @implementation Son : Father</span><br><span class="line">        - - (id)init</span><br><span class="line">        - &#123;</span><br><span class="line">        -     self = [super init];</span><br><span class="line">        -     if (self)</span><br><span class="line">        -     &#123;</span><br><span class="line">        -         NSLog(@&quot;%@&quot;, NSStringFromClass([self class]));</span><br><span class="line">        -         NSLog(@&quot;%@&quot;, NSStringFromClass([super class]));</span><br><span class="line">        -     &#125;</span><br><span class="line">        -     return self;</span><br><span class="line">        - &#125;</span><br><span class="line">        - @end</span><br><span class="line"></span><br><span class="line">**self**表示当前这个类的对象，而**super**是一个编译器标示符，和**self**指向同一个消息接受者。在本例中，无论是 `[self class]` 还是 `[super class]` ，接受消息者都是**Son**对象，但**super**与**self**不同的是，**self**调用**class**方法时，是在子类**Son**中查找方法，而**super**调用**class**方法时，是在父类**Father**中查找方法。&lt;br/&gt;</span><br><span class="line">当调用 `[self class]` 方法时，会转化为**objc_msgSend**函数，这个函数定义如下：</span><br><span class="line"></span><br><span class="line">        - id objc_msgSend(id self, SEL op, ...)</span><br><span class="line">        </span><br><span class="line">这时会从当前**Son**类的方法列表中查找，如果没有，就到**Father**类查找，还是没有，最后在**NSObject**类查找到。</span><br><span class="line"></span><br><span class="line">我们可以从 `NSObject.mm` 文件中看到 `- (Class)class` 的实现：</span><br></pre></td></tr></table></figure>
+</code></pre><ul>
+<li><p>现在让我们看一下<strong>objc_msgSend</strong>它具体是如何发送消息：</p>
 <ul>
-<li><p>(Class)class {<br>return object_getClass(self);<br>}<br><code>``
-所以</code>NSLog(@”%@”, NSStringFromClass([self class]));<code>会输出</code>Son<code>。&lt;br/&gt;
-当调用</code>[super class]` 方法时，会转化为<strong>objc_msgSendSuper</strong>，这个函数定义如下：<br></p>
-<ul>
-<li>id objc_msgSendSuper(struct objc_super *super, SEL op, …)</li>
+<li>1、首先根据<strong>receiver</strong>对象的<strong>isa</strong>指针获取它对应的<strong>class</strong>；</li>
+<li>2、优先在<strong>class的cache</strong>查找<strong>message</strong>方法，如果找不到，再到<strong>methodLists</strong>查找；</li>
+<li>3、如果没有在<strong>class</strong>找到，再到<strong>super_class</strong>查找；</li>
+<li>4、一旦找到<strong>message</strong>这个方法，就执行它实现的<strong>IMP</strong>。</li>
 </ul>
 </li>
 </ul>
-<p><strong>objc_msgSendSuper</strong>函数第一个参数<strong>super</strong>的数据类型是一个指向<strong>objc_super</strong>的结构体，从 <code>message.h</code> 文件中查看它的定义：</p>
+<p><img src="http://ww2.sinaimg.cn/large/762694bagw1f46lsvffshj20980f474x.jpg" alt=""></p>
+<h3 id="self与super"><a href="#self与super" class="headerlink" title="self与super"></a>self与super</h3><p>为了让大家更好地理解self和super，借用<a href="http://blog.sunnyxx.com" target="_blank" rel="external">sunnyxx博客</a>的<a href="http://blog.sunnyxx.com/2014/03/06/ios_exam_0_key/" target="_blank" rel="external">iOS程序员6级考试</a>一道题目：下面的代码分别输出什么？</p>
+<pre><code>@implementation Son : Father
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        NSLog(@&quot;%@&quot;, NSStringFromClass([self class]));
+       NSLog(@&quot;%@&quot;, NSStringFromClass([super class]));
+    }
+    return self;
+}
+@end
+</code></pre><p><strong>self</strong>表示当前这个类的对象，而<strong>super</strong>是一个编译器标示符，和<strong>self</strong>指向同一个消息接受者。在本例中，无论是 <code>[self class]</code> 还是 <code>[super class]</code> ，接受消息者都是<strong>Son</strong>对象，但<strong>super</strong>与<strong>self</strong>不同的是，<strong>self</strong>调用<strong>class</strong>方法时，是在子类<strong>Son</strong>中查找方法，而<strong>super</strong>调用<strong>class</strong>方法时，是在父类<strong>Father</strong>中查找方法。<br><br>当调用 <code>[self class]</code> 方法时，会转化为<strong>objc_msgSend</strong>函数，这个函数定义如下：</p>
+<pre><code>- id objc_msgSend(id self, SEL op, ...)
+</code></pre><p>这时会从当前<strong>Son</strong>类的方法列表中查找，如果没有，就到<strong>Father</strong>类查找，还是没有，最后在<strong>NSObject</strong>类查找到。</p>
+<p>我们可以从 <code>NSObject.mm</code> 文件中看到 <code>- (Class)class</code> 的实现：</p>
+<pre><code>- (Class)class {
+   return object_getClass(self);
+}
+</code></pre><p>所以 <code>NSLog(@&quot;%@&quot;, NSStringFromClass([self class]));</code> 会输出 <code>Son</code> .<br><br>当调用 <code>[super class]</code> 方法时，会转化为<strong>objc_msgSendSuper</strong>，这个函数定义如下：<br></p>
+<pre><code>- id objc_msgSendSuper(struct objc_super *super, SEL op, ...)
+</code></pre><p><strong>objc_msgSendSuper</strong>函数第一个参数<strong>super</strong>的数据类型是一个指向<strong>objc_super</strong>的结构体，从 <code>message.h</code> 文件中查看它的定义：</p>
 <pre><code>/// Specifies the superclass of an instance.
 struct objc_super {
     /// Specifies an instance of a class.
@@ -970,8 +1375,7 @@ pod installed.</code></p>
 <li>3.如果你发现import的时候没有提示AFNetworking的文件，可以在target-Build Settings下修改“User Header Search Paths”项，新增${SRCROOT}并选择rcursive，如下图:<br><img src="http://7xqh31.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-22%20%E4%B8%8B%E5%8D%889.25.23.png" alt="屏幕快照 2016-05-22 下午9.25.23"><br>设置完成后就可以在文件中直接引用第三方库的文件并使用了。<br>(注意，此时再引用第三方库的头文件要使用<code>#import &quot;AFNetworking.h&quot;</code>)</li>
 </ul>
 <p>ps:当执行pod install之后，除了Podfile，还会生成一个名为Podfile.lock的文件，它会锁定当前各依赖库的版本，之后即使多次执行pod install也不会更改版本，只有执行pod update才会改变Podfile.lock.在多人协作的时候，这样可以防止第三方库升级时候造成大家各自的第三方库版本不一致。所以在提交版本的时候不能把它落下，也不要添加到.gitignore中.</p>
-<p>#五、常见问题</p>
-<ul>
+<h2 id="五、常见问题"><a href="#五、常见问题" class="headerlink" title="五、常见问题"></a>五、常见问题</h2><ul>
 <li><p>1、单引号格式错误<br><code>[!] Invalid Podfile file: undefined local variable or method ‘en_US&#39; for #&lt;Pod::Podfile:0x00000102a5d8b0&gt;. Updating CocoaPods might fix the issue.</code><br>解决办法：系统偏好设置-键盘-文本-将“使用智能引号和破折号”一项取消勾选-再将podfile里面的单（双）引号修改一下                     </p>
 </li>
 <li><p>2、字符集错误<br><code>ArgumentError - invalid byte sequence in US-ASCII</code><br>解决办法：使用locale命令查看当前的字符集，如果都是zh，需要执行以下命令：<br><code>export LC_ALL=en_US.UTF-8
@@ -1070,7 +1474,7 @@ export LANG=en_US.UTF-8</code><br>然后再使用locale命令查看，已经改�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
