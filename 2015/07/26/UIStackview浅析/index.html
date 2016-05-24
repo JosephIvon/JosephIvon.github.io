@@ -1,0 +1,580 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="UIStackView浅析导语UIStackView提供了一个高效的接口用于平铺一行或一列的视图组合。对于嵌入到StackView的视图，你不用再添加自动布局的约束了。Stack View管理这些子视图的布局，并帮你自动布局约束。也就是说，这些子视图能够适应不同的屏幕尺寸。此外，你可以嵌入一个stack View到另一个stack view中来创建更为复杂的用户界面。不要误解我的意思，这并不意味着">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIStackView浅析">
+<meta property="og:url" content="https://JosephIvon.github.io/2015/07/26/UIStackview浅析/index.html">
+<meta property="og:site_name" content="凡文波的个人博客">
+<meta property="og:description" content="UIStackView浅析导语UIStackView提供了一个高效的接口用于平铺一行或一列的视图组合。对于嵌入到StackView的视图，你不用再添加自动布局的约束了。Stack View管理这些子视图的布局，并帮你自动布局约束。也就是说，这些子视图能够适应不同的屏幕尺寸。此外，你可以嵌入一个stack View到另一个stack view中来创建更为复杂的用户界面。不要误解我的意思，这并不意味着">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/762694bagw1f46v6yzgy3j20hy0bsq4u.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/762694bagw1f46v7rattzj20t90ikt90.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/762694bagw1f46uog9euuj213u108af4.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/762694bagw1f46voqgipmj21kw0x410s.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/762694bagw1f46vn9ptncj20m80bsmyj.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/762694bagw1f46vutcff9j20m80c9ta7.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/762694bagw1f46vwtrzj4j20m80cadhv.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/762694bagw1f46vyvkkr1j20dw08ogmi.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/762694bagw1f46w1w8u5nj20m80ca40e.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/762694bagw1f46w30l4r7j20m80camz4.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/762694bagw1f46w5ln277j20m80caq65.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/762694bagw1f46w7aotk7j20m80cw0v6.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/762694bagw1f46w9npzqog20sg06f40n.gif">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/762694bagw1f46wbmnz57j20m80can0q.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/762694bagw1f46we82qihg20sg06ldnv.gif">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/762694bagw1f46wgj53twj20m80ca421.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/762694bagw1f46wi4mrk7j20m80c977x.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/762694bagw1f46wmyab5ij207s0fgjsv.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/762694bagw1f46wlz8h0qj20go08eq4n.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/762694bagw1f46wkjw5zqj20go08ddhb.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/762694bagw1f46wrsxofbj20m809utai.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/762694bagw1f46wtx9bfog20m80cygop.gif">
+<meta property="og:updated_time" content="2016-05-24T15:59:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UIStackView浅析">
+<meta name="twitter:description" content="UIStackView浅析导语UIStackView提供了一个高效的接口用于平铺一行或一列的视图组合。对于嵌入到StackView的视图，你不用再添加自动布局的约束了。Stack View管理这些子视图的布局，并帮你自动布局约束。也就是说，这些子视图能够适应不同的屏幕尺寸。此外，你可以嵌入一个stack View到另一个stack view中来创建更为复杂的用户界面。不要误解我的意思，这并不意味着">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/762694bagw1f46v6yzgy3j20hy0bsq4u.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> UIStackView浅析 | 凡文波的个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凡文波的个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">最怕一生碌碌无为，却自欺欺人平凡可贵。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UIStackView浅析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-26T20:45:36+08:00" content="2015-07-26">
+              2015-07-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="UIStackView浅析"><a href="#UIStackView浅析" class="headerlink" title="UIStackView浅析"></a>UIStackView浅析</h1><h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h2><p><strong>UIStackView</strong>提供了一个高效的接口用于平铺一行或一列的视图组合。对于嵌入到<strong>StackView</strong>的视图，你不用再添加自动布局的约束了。<strong>Stack View</strong>管理这些子视图的布局，并帮你自动布局约束。也就是说，这些子视图能够适应不同的屏幕尺寸。此外，你可以嵌入一个<strong>stack View</strong>到另一个<strong>stack view</strong>中来创建更为复杂的用户界面。不要误解我的意思，这并不意味着你就不需要处理自动布局了。你仍旧要定义一些布局约束来约束<strong>stack view</strong>。它只是帮你节约了为每个<strong>UI</strong>元素创建约束的时间，同时它更容易的从布局中添加/删除一个视图。</p>
+<p><img src="http://ww4.sinaimg.cn/large/762694bagw1f46v6yzgy3j20hy0bsq4u.jpg" alt=""></p>
+<p>假设你对<strong>auto layout</strong>了解。如果不是，请先阅读这片关于<strong>autolayout</strong>的<a href="http://www.appcoda.com/introduction-auto-layout/" target="_blank" rel="external">介绍文章</a></p>
+<h2 id="UIStackView的属性中文解释"><a href="#UIStackView的属性中文解释" class="headerlink" title="UIStackView的属性中文解释"></a>UIStackView的属性中文解释</h2><p><img src="http://ww2.sinaimg.cn/large/762694bagw1f46v7rattzj20t90ikt90.jpg" alt=""><br><img src="http://ww4.sinaimg.cn/large/762694bagw1f46uog9euuj213u108af4.jpg" alt=""></p>
+<h2 id="Demo-App"><a href="#Demo-App" class="headerlink" title="Demo App"></a>Demo App</h2><p>我们将要构建的<strong>demo app</strong>就是导语中展示的图片，下面介绍如何使用<strong>stackview</strong>布局一个类似的用户界面。</p>
+<h3 id="从对象库中添加Stack-Views"><a href="#从对象库中添加Stack-Views" class="headerlink" title="从对象库中添加Stack Views"></a>从对象库中添加Stack Views</h3><p>现在升级Xcode7并打开 <code>Main.storyboard</code> 。从对象库中拖出垂直的<strong>stack view</strong>放到<strong>storyboard</strong>上的 <code>view controller</code> 中。<strong>Stack View</strong>可以在纵向和横向布局安排其子视图（称为安排视图）。因为我们要布局垂直的图像视图，所以我们选择垂直的从对象库中添加<strong>Stack Views</strong>. </p>
+<p><img src="http://ww3.sinaimg.cn/large/762694bagw1f46voqgipmj21kw0x410s.jpg" alt=""></p>
+<p>接下来，从对象库中拖出一个图像视图，当你把图像视图放到<strong>stack view</strong>中，图像视图会自动调整。重复同样的操作，添加更多的<strong>image view</strong>。这就是它神奇的地方：当您添加另一个图像视图时，<strong>stack view</strong>会自动布局图像视图，为您设置必要的约束。</p>
+<h3 id="为Stack-View定义布局约束"><a href="#为Stack-View定义布局约束" class="headerlink" title="为Stack View定义布局约束"></a>为Stack View定义布局约束</h3><p><strong>Stack View</strong>节省了开发者为每个<strong>UI</strong>元素定义约束的时间，所说的，您需要提供<strong>Stack View</strong>的布局约束。对于我们刚刚添加的，我们需要定义以下布局约束：<br></p>
+<ul>
+<li>设置<strong>Stack View</strong>的距上，距左和居右的间距，使得<strong>Stack View</strong>在屏幕的顶部。<br></li>
+<li>为<strong>Stack View</strong>设置一个高度约束，使得<strong>Stack View</strong>视图的高度占父视图高度的<code>70%</code>。<br><br>现在选择<strong>stack view</strong>，点击布局栏按钮中的<strong>Pin</strong>按钮，设置距上，距左，居右值分别为<code>10</code>，<code>0</code>，<code>0</code>。然后点击 <code>“Add 3 Constraints”</code> 按钮添加这些约束。</li>
+</ul>
+<p><img src="http://ww2.sinaimg.cn/large/762694bagw1f46vn9ptncj20m80bsmyj.jpg" alt=""></p>
+<p><strong>Stack view</strong>的当前位置不符合约束，你可以在 <code>Document Outline</code> 点击警告指示（即黄色的箭头）纠正位置。</p>
+<p>要设置高度约束，就要在<strong>IB</strong>的 <code>Document Outline</code> 中从堆栈视图到视图中的控件拖动视图，释放按钮后，选择 <code>“Equal Heights”</code> 。<br></p>
+<p><img src="http://ww1.sinaimg.cn/large/762694bagw1f46vutcff9j20m80c9ta7.jpg" alt=""></p>
+<p>这时设置<strong>stack view</strong>的高度和这个<strong>view</strong>的高度相等的。然而，<strong>stack view</strong>仅仅需要高度的75%。所以，选择 <code>“Stack View.height”</code> 的约束，选择 <code>Attributes inspector</code> ，把 <code>Multiplier</code> 这项的值从<code>1.0</code>改为<code>0.7</code>.</p>
+<p><img src="http://ww3.sinaimg.cn/large/762694bagw1f46vwtrzj4j20m80cadhv.jpg" alt=""></p>
+<h3 id="设置Stack-View的属性"><a href="#设置Stack-View的属性" class="headerlink" title="设置Stack View的属性"></a>设置Stack View的属性</h3><p>这个<strong>stack view</strong> 看起来并不是我们期望的。一旦你添加了<strong>stack view</strong>，你可以改变一些<strong>stack view</strong>的属性来改变它的外观。<strong>axis</strong>选项决定是否应布置的视图垂直或水平布置。 <strong>alignment</strong>选项控制这些视图的对齐方式。比如你如果设置成 <code>Leading</code> ，<strong>stack view</strong>管理的视图排列按<code>Leading</code>对齐。</p>
+<p><img src="http://ww2.sinaimg.cn/large/762694bagw1f46vyvkkr1j20dw08ogmi.jpg" alt=""></p>
+<p><strong>distribution</strong>属性决定了其管理的视图的大小和位置。默认设置为 <code>Fill</code> 。这是<strong>stack view</strong>尽量让它的所有子视图在一个合理的距离。现在把它改为 <code>Fill Equally</code> 。<strong>stack view</strong>会调整它所有的子视图一样的尺寸。</p>
+<p><img src="http://ww4.sinaimg.cn/large/762694bagw1f46w1w8u5nj20m80ca40e.jpg" alt=""></p>
+<p><strong>spacing</strong>属性让你设置视图之间的间距。把它值改为<code>10</code>来增加图像视图之间的间距。</p>
+<p><img src="http://ww2.sinaimg.cn/large/762694bagw1f46w30l4r7j20m80camz4.jpg" alt=""></p>
+<h3 id="设置图像"><a href="#设置图像" class="headerlink" title="设置图像"></a>设置图像</h3><p>接下来，我们设置<strong>image view</strong>的相应的图像。选择第一个<strong>image view</strong>,选择 <code>Attributes inspector</code> ，把<strong>image</strong>设置为 <code>“nature-1″</code> ，把<strong>model</strong>设置为 <code>“Aspect Fill”</code> ，同时勾选上 <code>“Clip Subviews”</code> 。重复同样的步骤设置余下的<strong>image view</strong>，但是要把<strong>image</strong> 设置为 <code>“nature-2″</code>  和 <code>“nature-3″</code> 。这样你的布局看起来像这样：</p>
+<p><img src="http://ww2.sinaimg.cn/large/762694bagw1f46w5ln277j20m80caq65.jpg" alt=""></p>
+<p>现在你可以运行项目，预览下。可以在模拟器上测试<strong>app</strong>的<strong>UI</strong>是否正确的适配所有的设备。<strong>stack view</strong>已经自动的为你添加好了约束。事实上你可以启动 <code>view debugging</code> 选项（要在运行app的时候）来显示图像视图的布局约束。</p>
+<p><img src="http://ww2.sinaimg.cn/large/762694bagw1f46w7aotk7j20m80cw0v6.jpg" alt=""></p>
+<h3 id="使用嵌套Stack-View布局标签和按钮"><a href="#使用嵌套Stack-View布局标签和按钮" class="headerlink" title="使用嵌套Stack View布局标签和按钮"></a>使用嵌套Stack View布局标签和按钮</h3><p>我们还没有完成。有几个标签和按钮添加到用户界面。现在将标签从对象库中拖到视图，命名 <code>“Nature”</code> ，并将其定位在<strong>stack view</strong>下面。把它的字体大小改为30点，使其更大一些。下一步，将另一个标签视图和名称标签 <code>”A collection of nature photos from magdeleine.co“</code> 。放置在 <code>Nature</code> 标签之下。</p>
+<p>再次，您不需要设置这些标签的布局约束。让<strong>stack view</strong>为你做这个魔术。在本教程的最开始，我提到了使用<strong>stack view</strong>的方法。之前，是从对象库中添加了堆栈视图。现在我会告诉你另一个办法。</p>
+<p>按住命令键来选择标签，然后单击布局栏中的 <code>Stack</code> 按钮。<strong>IB</strong>自动把这些标签嵌入到垂直堆叠视图中。</p>
+<p><img src="http://ww2.sinaimg.cn/large/762694bagw1f46w9npzqog20sg06f40n.gif" alt=""></p>
+<p>下一步，向视图添加2个按钮。命名一个按钮，<code>“Like”</code> ，另一个是 <code>“Share”</code> 。再次，我们不想处理自动布局。所以，在布局栏中选择按钮，然后单击 <code>Stack</code> 按钮，将两个按钮嵌入到一个水平堆栈视图中。设置堆栈视图的 <code>spacing</code> 值为<code>5</code>。</p>
+<p><img src="http://ww1.sinaimg.cn/large/762694bagw1f46wbmnz57j20m80can0q.jpg" alt=""></p>
+<p>如果你看了最后的布局，这两个按钮应该放在 <code>Nature</code> 标签旁边。你怎么能做到这一步呢？关于<strong>stack view</strong>的最重要的是，您可以使用嵌套的多个<strong>stack view</strong>来构建你想要的精确布局。现在将<strong>stack view</strong>拖到 <code>Nature</code> 标签的按钮上。一旦你释放了按钮，<strong>stack view</strong>将被嵌入到另一个<strong>stack view</strong>中。布局 <code>Nature</code> 标签和按钮，选择两种视图，然后将它们添加到另一个<strong>stack view</strong>中，使用 <code>stack</code> 选项。默认情况下，新堆栈视图的轴设置为垂直方向。在属性检查中，把它改为水平，这样就可以把 <code>Like</code> 和 <code>Shared</code> 按钮放置在<code>Nature</code> 标签旁边了。</p>
+<p><img src="http://ww1.sinaimg.cn/large/762694bagw1f46we82qihg20sg06ldnv.gif" alt=""></p>
+<p>按钮也需要与 <code>Nature</code> 标签的基线对齐。选择 <code>stack</code> 视图，并将<strong>alignment</strong>从 <code>Fill</code> 改为 <code>First Baseline</code> 。同时，<strong>spacing</strong>选项设置为<code>20</code>，这样来添加 <code>Nature</code> 标签和按钮之间的间距。</p>
+<p><img src="http://ww3.sinaimg.cn/large/762694bagw1f46wgj53twj20m80ca421.jpg" alt=""></p>
+<p>正如你所看到的，我们只需要使用嵌套的<strong>stack view</strong>构建你需要的精确布局。</p>
+<p>最后，我们为包含图像的<strong>stack view</strong>和包含按钮&amp;标签的<strong>stack view</strong>之间的设置布局约束。选择包含按钮和标签的堆栈视图，然后单击布局栏按钮中的<code>Pin</code>按钮。设置居上、距左和居右的值分别为<code>0</code>、<code>8</code>和<code>0</code>。</p>
+<p><img src="http://ww4.sinaimg.cn/large/762694bagw1f46wi4mrk7j20m80c977x.jpg" alt=""></p>
+<p>确保描述标签是自动调整大小，<code>Lines</code>设置为0和<code>Line Breaks</code>设置为<code>Word Wrap</code>。太好了你已经完成了界面设计。现在运行该项目来看看结果。如果您的一切配置正确，您的<strong>UI</strong>应该看起来像这样：</p>
+<p><img src="http://ww2.sinaimg.cn/large/762694bagw1f46wmyab5ij207s0fgjsv.jpg" alt=""></p>
+<p>如果你把iPhone横过来，<strong>UI</strong>应该是这样:</p>
+<p><img src="http://ww4.sinaimg.cn/large/762694bagw1f46wlz8h0qj20go08eq4n.jpg" alt=""></p>
+<p>它看起来不错，但如果这些图像想这样横向排列的话，是不是更给力？</p>
+<p><img src="http://ww1.sinaimg.cn/large/762694bagw1f46wkjw5zqj20go08ddhb.jpg" alt=""></p>
+<h3 id="使用Size-Classes-调整Stack-Views"><a href="#使用Size-Classes-调整Stack-Views" class="headerlink" title="使用Size Classes 调整Stack Views"></a>使用Size Classes 调整Stack Views</h3><p>为了达到iPhone在不同的方向上布局不一样，我们必须使<strong>stack view</strong>自适应。在iOS 8中，介绍了<strong>Size Classes</strong>的概念。下表显示了iOS设备及其相应的使用<strong>Size Classes</strong> ：</p>
+<p><img src="http://ww1.sinaimg.cn/large/762694bagw1f46wrsxofbj20m809utai.jpg" alt=""></p>
+<p>你可以使用<strong>size classes</strong>提供的重写原来的基本布局。在这种情况下，我们在这两种<strong>size classes</strong>情况下要设置<strong>stack view</strong>的 <code>axis</code>（持有图像视图的）从垂直到水平：</p>
+<ul>
+<li><p>Compact width-Compact height</p>
+</li>
+<li><p>Regular width-Compact height</p>
+</li>
+</ul>
+<p>现在选择<strong>stack view</strong>，在选择 <code>Attributes inspector</code> 。在 <code>Axis</code> 选项下点击+按钮。选择 <code>Any Width &gt; Compact height</code> ,之后设置这个<strong>size classes</strong>下的 <code>Axis</code> 值为 <code>Horizontal</code> 。这里，<code>any width</code> 包括 <code>compact</code> 和 <code>regular</code> 两种宽度。</p>
+<p><img src="http://ww4.sinaimg.cn/large/762694bagw1f46wtx9bfog20m80cygop.gif" alt=""></p>
+<p>做完这些，<strong>stack view</strong>将会在iPhone横屏的时候设置为水平。在不同的iOS设备上运行项目，查看结果。</p>
+<p><a href="https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html" target="_blank" rel="external">UISTackView官方文档</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/21/ios多线程技术/" rel="next" title="iOS多线程技术">
+                <i class="fa fa-chevron-left"></i> iOS多线程技术
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="JosephIvon" />
+          <p class="site-author-name" itemprop="name">JosephIvon</p>
+          <p class="site-description motion-element" itemprop="description">iOS developer</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UIStackView浅析"><span class="nav-number">1.</span> <span class="nav-text">UIStackView浅析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导语"><span class="nav-number">1.1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIStackView的属性中文解释"><span class="nav-number">1.2.</span> <span class="nav-text">UIStackView的属性中文解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo-App"><span class="nav-number">1.3.</span> <span class="nav-text">Demo App</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从对象库中添加Stack-Views"><span class="nav-number">1.3.1.</span> <span class="nav-text">从对象库中添加Stack Views</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为Stack-View定义布局约束"><span class="nav-number">1.3.2.</span> <span class="nav-text">为Stack View定义布局约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置Stack-View的属性"><span class="nav-number">1.3.3.</span> <span class="nav-text">设置Stack View的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置图像"><span class="nav-number">1.3.4.</span> <span class="nav-text">设置图像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用嵌套Stack-View布局标签和按钮"><span class="nav-number">1.3.5.</span> <span class="nav-text">使用嵌套Stack View布局标签和按钮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Size-Classes-调整Stack-Views"><span class="nav-number">1.3.6.</span> <span class="nav-text">使用Size Classes 调整Stack Views</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JosephIvon</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
