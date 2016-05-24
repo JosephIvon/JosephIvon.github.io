@@ -1,0 +1,556 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="#Git常用的基础命令
+起步用户信息
+配置你个人的用户名称和电子邮件地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录：git config --global user.name “youname”git config --global user.email “12345@example.com”    
+如果用了 —glob">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git常用的基础命令">
+<meta property="og:url" content="https://JosephIvon.github.io/2015/07/06/git常用的基础命令/index.html">
+<meta property="og:site_name" content="凡文波的个人博客">
+<meta property="og:description" content="#Git常用的基础命令
+起步用户信息
+配置你个人的用户名称和电子邮件地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录：git config --global user.name “youname”git config --global user.email “12345@example.com”    
+如果用了 —glob">
+<meta property="og:updated_time" content="2016-05-24T10:28:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git常用的基础命令">
+<meta name="twitter:description" content="#Git常用的基础命令
+起步用户信息
+配置你个人的用户名称和电子邮件地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录：git config --global user.name “youname”git config --global user.email “12345@example.com”    
+如果用了 —glob">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Git常用的基础命令 | 凡文波的个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凡文波的个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">最怕一生碌碌无为，却自欺欺人平凡可贵。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git常用的基础命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-06T21:14:21+08:00" content="2015-07-06">
+              2015-07-06
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#Git常用的基础命令</p>
+<h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><p><strong>用户信息</strong><br></p>
+<p>配置你个人的用户名称和电子邮件地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录：<br><br><code>git config --global user.name “youname”</code><br><code>git config --global user.email “12345@example.com”</code>    </p>
+<p>如果用了 —global 选项，那么更改的配置文件就是位于你用户主目录下的那个，以后你所有的项目都会默认使用这里配置的用户信息。如果要在某个特定的项目中使用其他名字或者电邮，只要去掉 —global 选项重新配置即可，新的设定保存在当前项目的 .git/config 文件里。<br><br></p>
+<p>##GIT基础<br><strong>查看配置信息</strong><br>查看已有的配置信息<br><code>git config --list</code><br><code>git config -l</code></p>
+<p><strong>获取帮助</strong><br>例如想获取config命令的帮助信息<br><code>git help config</code><br><code>git config --help</code>    </p>
+<p><strong>初始化新仓库</strong><br><code>git init</code></p>
+<p>初始化后，在当前目录下会出现一个名为 .git 的目录，所有 Git 需要的数据和资源都存放在这个目录中。不过目前，仅仅是按照既有的结构框架初始化好了里边所有的文件和目录，但我们还没有开始跟踪管理项目中的任何一个文件。</p>
+<p>如果当前目录下有几个文件想要纳入版本控制，需要先用 git add 命令告诉 Git 开始对这些文件进行跟踪，然后提交：<br><strong>跟踪文件：</strong>（将文件加到暂存区域）<br> <code>git add readme.txt</code>    </p>
+<p> <strong>跟踪全部文件</strong><br><code>git add .</code></p>
+<p><strong>提交更新</strong><br><code>git commit -m “first version”</code>    </p>
+<p><strong>上传（推送）到github</strong><br><code>git push origin master</code></p>
+<p><strong>从现有仓库克隆</strong><br><code>git clone git://github.com/youname/project.git</code><br><code>git clone git@github.com:youname/project.git</code><br><code>git clone https://github.com/youname/project.git</code>    </p>
+<p><strong>检查当前文件状态</strong><br><code>git status</code>    </p>
+<p><strong>创建.gitignore文件</strong><br><code>touch .gitignore</code>    </p>
+<p><strong>查看修改之后没有暂存起来的内容</strong><br><code>git diff</code>    </p>
+<p><strong>移除文件</strong><br><code>git rm readme.txt</code>    </p>
+<p><strong>重命名文件</strong><br><code>git mv oldname.txt newname.txt</code></p>
+<p><strong>查看提交历史</strong><br><code>git log</code>    </p>
+<p><strong>取消暂存</strong><br><code>git reset HEAD readme.txt</code>     </p>
+<p><strong>添加远程仓库</strong>（远程仓库必须先在github上建好）<br><code>git remote add [shortname] [url]</code></p>
+<p><strong>实例：</strong><br><code>git remote add origin git@github.com:youname/yourRepo.git</code>    </p>
+<p><strong>推送数据到仓库</strong><br><code>git push [remote-name] [branch-name]</code>    </p>
+<p>如果要把本地的 master 分支推送到origin服务器上（再次说明下，克隆操作会自动使用默认的master 和origin 名字），可以运行下面的命令：<br><code>git push origin master</code>    </p>
+<p><strong>从远程仓库抓取数据</strong><br><code>git fetch [remote-name]</code>  </p>
+<p>碰到远端仓库服务器迁移，或者原来的克隆镜像不再使用，又或者某个参与者不再贡献代码，那么需要移除对应的远端仓库<br><strong>远程仓库的删除</strong><br><code>git remote rm origin</code>    </p>
+<p><strong>远程仓库重命名</strong>(此处命名的是上文添加远程仓库中的shortname)<br><code>git remote rename origin origin2</code>    </p>
+<p><strong>自动补全</strong><br>输入命令后按tab键，就会看到列出所有匹配的可用命令建议：<br><br><code>git co&lt;tab&gt;</code><br><br></p>
+<p>#GIT分支<br><strong>创建一个名为“testing”的分支</strong><br><br><code>git branch testing</code><br></p>
+<p><strong>切换到“testing”分支</strong>(默认为master分支)<br><br><code>git checkout testing</code><br></p>
+<p><strong>新建并切换到该分支</strong><br><br><code>git checkout -b iss53</code><br></p>
+<p><strong>这条命令相当于执行下面这两条命令</strong><br><br><code>git branch iss53</code><br><br><code>git checkout iss53</code><br></p>
+<p><strong>删除hotfix分支</strong>（如果该分支还未被合并则会提示错误，因为这样会丢失数据）<br><br><code>git branch -d hotfix</code><br></p>
+<p><strong>强制删除hotfix分支</strong>（强制删除，不会提示错误）<br><br><code>git branch -D hotfix</code><br></p>
+<p><strong>合并iss53分支</strong>（先切换到master分支）<br><br><code>git checkout master</code><br><br><code>git merge iss53</code><br></p>
+<p><strong>查看当前所有分支</strong><br><br><code>git branch</code><br></p>
+<p><strong>查看各个分支最后一个提交对象的信息</strong><br><br><code>git branch -v</code><br></p>
+<p><strong>查看已经与当前分支合并的分支</strong>（已经合并的查出来后可以删掉）<br><br><code>git branch --merge</code><br></p>
+<p><strong>查看未与当前分支合并的分支</strong><br><br><code>git branch --no-merged</code><br></p>
+<p><strong>同步远程服务器数据到本地</strong><br><br><code>git fetch origin</code><br></p>
+<p><strong>从新添加的远程仓库下载数据</strong><br><br><code>git remote add teamone git://git.team1.ourcompany.com</code><br><br><code>git fetch teamone</code><br></p>
+<p><strong>分化一个新的分支</strong>(使用这个命令会从服务器上下载master最新的版本，所以如果当前本地版本不是最新的，新的分支和本地分支会不同)<br><br><code>git checkout -b test1 origin/master</code><br></p>
+<p>假如你用这个新的分支进行git push，并且通过了合并，那么会在远程仓库建立一个新的同名分支<br><br><strong>删除该分支的方法</strong><br><br><code>git push origin :test1</code><br></p>
+<p><strong>分支的衍合：</strong>将test1分支衍合到master主分支<br><br><code>git checkout test1</code><br><br><code>git rebase master</code><br></p>
+<p><strong>另一种方法，直接衍合，不用再先切换到test1</strong><br><br><code>git rebase master test1</code><br></p>
+<p><strong>快进master分支</strong><br><br><code>git checkout master</code><br><br><code>git merge client</code><br></p>
+<p>衍合：一旦分支中的提交对象发布到公共仓库，就千万不要对该分支进行衍合操作。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/01/CocoaPods安装和使用/" rel="next" title="cocoaPods安装使用和常见问题">
+                <i class="fa fa-chevron-left"></i> cocoaPods安装使用和常见问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/11/markdown常用语法/" rel="prev" title="Markdown常用语法">
+                Markdown常用语法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="JosephIvon" />
+          <p class="site-author-name" itemprop="name">JosephIvon</p>
+          <p class="site-description motion-element" itemprop="description">iOS developer</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起步"><span class="nav-number">1.</span> <span class="nav-text">起步</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JosephIvon</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
