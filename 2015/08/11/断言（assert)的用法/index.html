@@ -1,0 +1,579 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="断言（ASSERT)的用法我一直以为assert仅仅是个报错函数，事实上，它居然是个宏，并且作用并非“报错”。
+　　在经过对其进行一定了解之后，对其作用及用法有了一定的了解，assert()的用法像是一种“契约式编程”，在我的理解中，其表达的意思就是，程序在我的假设条件下，能够正常良好的运作，其实就相当于一个if语句：
+123456789if(假设成立)&amp;#123;    程序正常运行；&amp;#125">
+<meta property="og:type" content="article">
+<meta property="og:title" content="断言（ASSERT)的用法">
+<meta property="og:url" content="https://JosephIvon.github.io/2015/08/11/断言（assert)的用法/index.html">
+<meta property="og:site_name" content="凡文波的个人博客">
+<meta property="og:description" content="断言（ASSERT)的用法我一直以为assert仅仅是个报错函数，事实上，它居然是个宏，并且作用并非“报错”。
+　　在经过对其进行一定了解之后，对其作用及用法有了一定的了解，assert()的用法像是一种“契约式编程”，在我的理解中，其表达的意思就是，程序在我的假设条件下，能够正常良好的运作，其实就相当于一个if语句：
+123456789if(假设成立)&amp;#123;    程序正常运行；&amp;#125">
+<meta property="og:updated_time" content="2016-05-29T10:29:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="断言（ASSERT)的用法">
+<meta name="twitter:description" content="断言（ASSERT)的用法我一直以为assert仅仅是个报错函数，事实上，它居然是个宏，并且作用并非“报错”。
+　　在经过对其进行一定了解之后，对其作用及用法有了一定的了解，assert()的用法像是一种“契约式编程”，在我的理解中，其表达的意思就是，程序在我的假设条件下，能够正常良好的运作，其实就相当于一个if语句：
+123456789if(假设成立)&amp;#123;    程序正常运行；&amp;#125">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 断言（ASSERT)的用法 | 凡文波的个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">凡文波的个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">最怕一生碌碌无为，却自欺欺人平凡可贵。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                断言（ASSERT)的用法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-11T23:31:11+08:00" content="2015-08-11">
+              2015-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="断言（ASSERT-的用法"><a href="#断言（ASSERT-的用法" class="headerlink" title="断言（ASSERT)的用法"></a>断言（ASSERT)的用法</h1><p>我一直以为<strong>assert</strong>仅仅是个报错函数，事实上，它居然是个宏，并且作用并非“报错”。</p>
+<p>　　在经过对其进行一定了解之后，对其作用及用法有了一定的了解，<code>assert()</code>的用法像是一种“契约式编程”，在我的理解中，其表达的意思就是，程序在我的假设条件下，能够正常良好的运作，其实就相当于一个if语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if(假设成立)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    程序正常运行；</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">      报错&amp;&amp;终止程序！（避免由程序运行引起更大的错误）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　但是这样写的话，就会有无数个if语句，甚至会出现，一个if语句的括号从文件头到文件尾，并且大多数情况下，我们要进行验证的假设，只是属于偶然性事件，又或者我们仅仅想测试一下，一些最坏情况是否发生，所以这里有了<code>assert()</code>.</p>
+<p>　　　assert宏的原型定义在 <code>assert.h</code> 中，其作用是如果它的条件返回错误，则终止程序执行.</p>
+<pre><code>1 #include &quot;assert.h&quot;
+
+2 void assert( int expression );
+</code></pre><p>　　<strong>assert</strong>的作用是现计算表达式 <strong>expression</strong> ，如果其值为假（即为0），那么它先向 <strong>stderr</strong> 打印一条出错信息,然后通过调用 <strong>abort</strong> 来终止程序运行。<br> 使用 <strong>assert</strong> 的缺点是，频繁的调用会极大的影响程序的性能，增加额外的开销。<br>　　在调试结束后，可以通过在包含<code>#include</code> 的语句之前插入 <code>#define NDEBUG</code> 来禁用<strong>assert</strong>调用，示例代码如下：</p>
+<pre><code>1 #include
+2 #define NDEBUG
+3 #include
+</code></pre><p> 　　用法总结与注意事项：</p>
+<p>　　1)在函数开始处检验传入参数的合法性</p>
+<p>　　如:
+　　</p>
+<pre><code>1 int resetBufferSize(int nNewSize)
+2 {
+3 //功能:改变缓冲区大小,
+4 //参数:nNewSize 缓冲区新长度
+5 //返回值:缓冲区当前长度
+6 //说明:保持原信息内容不变 nNewSize&lt;=0表示清除缓冲区
+7 assert(nNewSize &gt;= 0);
+8 assert(nNewSize &lt;= MAX_BUFFER_SIZE);
+9
+10 ...
+11 } 
+</code></pre><p>　　2) 每个<strong>assert</strong>只检验一个条件,因为同时检验多个条件时,如果断言失败,无法直观的判断是哪个条件失败</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">分类</th>
+<th style="text-align:left">语 句</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"> 不好:</td>
+<td style="text-align:left">assert(nOffset&gt;=0 &amp;&amp; nOffset+nSize&lt;=m_nInfomationSize);</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">  好:</td>
+<td style="text-align:left">assert(nOffset &gt;= 0);<br>assert(nOffset+nSize &lt;= m_nInfomationSize)</td>
+</tr>
+</tbody>
+</table>
+<p>　　3) 不能使用改变环境的语句,因为<strong>assert</strong>只在<strong>DEBUG</strong>个生效,如果这么做,会使用程序在真正运行时遇到问题:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">分类</th>
+<th style="text-align:left">语 句</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">错误</td>
+<td style="text-align:left">assert(i++ &lt; 100)<br>这是因为如果出错，比如在执行之前i=100,那么这条语句就不会执行，那么i++这条命令就没有执行。</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">正确</td>
+<td style="text-align:left">assert(i &lt; 100)<br>i++;</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>　　4) <strong>assert</strong>和后面的语句应空一行,以形成逻辑和视觉上的一致感<br>　　5) 有的地方,<strong>assert</strong>不能代替条件过滤</p>
+<p>　　程序一般分为<strong>Debug</strong> 版本和<strong>Release</strong> 版本，<strong>Debug</strong> 版本用于内部调试，<strong>Release</strong> 版本发行给用户使用。断言<strong>assert</strong> 是仅在<strong>Debug</strong> 版本起作用的宏，它用于检查“不应该”发生的情况。以下是一个内存复制程序，在运行过程中，如果<strong>assert</strong> 的参数为假，那么程序就会中止（一般地还会出现提示对话，说明在什么地方引发了<strong>assert</strong>）。</p>
+<p>以下是使用断言的几个原则：</p>
+<p>　　（1）使用断言捕捉不应该发生的非法情况。不要混淆非法情况与错误情况之间的区别，后者是必然存在的并且是一定要作出处理的。</p>
+<p>　　（2）使用断言对函数的参数进行确认。</p>
+<p>　　（3）在编写函数时，要进行反复的考查，并且自问：“我打算做哪些假定？”一旦确定了的假定，就要使用断言对假定进行检查。</p>
+<p>　　（4）一般教科书都鼓励程序员们进行防错性的程序设计，但要记住这种编程风格会隐瞒错误。当进行防错性编程时，如果“不可能发生”的事情的确发生了，则要使用断言进行报警。</p>
+<p>　　<code>ASSERT ()</code> 是一个调试程序时经常使用的宏，在程序运行时它计算括号内的表达式，如果表达式为<code>FALSE (0)</code>, 程序将报告错误，并终止执行。如果表达式不为0，则继续执行后面的语句。这个宏通常原来判断程序中是否出现了明显非法的数据，如果出现了终止程序以免导致严重后果，同时也便于查找错误。</p>
+<p><strong>ASSERT</strong>只有在<strong>Debug</strong>版本中才有效，如果编译为<strong>Release</strong>版本则被忽略。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/02/reactivecocoa基础/" rel="next" title="ReactiveCocoa基础">
+                <i class="fa fa-chevron-left"></i> ReactiveCocoa基础
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="JosephIvon" />
+          <p class="site-author-name" itemprop="name">JosephIvon</p>
+          <p class="site-description motion-element" itemprop="description">iOS developer</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#断言（ASSERT-的用法"><span class="nav-number">1.</span> <span class="nav-text">断言（ASSERT)的用法</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JosephIvon</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
