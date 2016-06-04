@@ -206,6 +206,225 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/23/加快xcode的编译链接速度/" itemprop="url">
+                  加快XCode的编译链接速度
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-23T22:37:16+08:00" content="2015-08-23">
+              2015-08-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="加快XCode的编译链接速度"><a href="#加快XCode的编译链接速度" class="headerlink" title="加快XCode的编译链接速度"></a>加快XCode的编译链接速度</h2><h3 id="提升编译链接的速度主要有以下三个方式："><a href="#提升编译链接的速度主要有以下三个方式：" class="headerlink" title="提升编译链接的速度主要有以下三个方式："></a>提升编译链接的速度主要有以下三个方式：</h3><h4 id="1-提高XCode编译时使用的线程数"><a href="#1-提高XCode编译时使用的线程数" class="headerlink" title="1. 提高XCode编译时使用的线程数"></a>1. 提高XCode编译时使用的线程数</h4><pre><code>defaults write com.apple.Xcode PBXNumberOfParallelBuildSubtasks 4
+</code></pre><p>XCode默认使用与CPU核数相同的线程来进行编译，但由于编译过程中的IO操作往往比CPU运算要多，因此适当的提升线程数可以在一定程度上加快编译速度。本人采用的是4核的CPU，将线程数改为8后编译速度略有提升。</p>
+<h4 id="2-将Debug-Information-Format改为DWARF"><a href="#2-将Debug-Information-Format改为DWARF" class="headerlink" title="2. 将Debug Information Format改为DWARF"></a>2. 将Debug Information Format改为DWARF</h4><p>在工程对应<strong>Target</strong>的<strong>Build Settings</strong>中，找到<strong>Debug Information Format</strong>这一项，将<strong>Debug</strong>时的<code>DWARF with dSYM file</code>改为<code>DWARF</code>。</p>
+<p><img src="http://ww4.sinaimg.cn/large/762694bagw1f4j7v1cj65j20wu0a4ace.jpg" alt=""></p>
+<p>这一项设置的是是否将调试信息加入到可执行文件中，改为<code>DWARF</code>后，如果程序崩溃，将无法输出崩溃位置对应的函数堆栈，但由于<strong>Debug</strong>模式下可以在<strong>XCode</strong>中查看调试信息，所以改为<code>DWARF</code>影响并不大。这一项更改完之后，可以大幅提升编译速度。</p>
+<p>需要注意的是，将<strong>Debug Information Format</strong>改为<code>DWARF</code>之后，会导致在<strong>Debug</strong>窗口无法查看相关类类型的成员变量的值。当需要查看这些值时，可以将<strong>Debug Information Format</strong>改回<code>DWARF with dSYM file</code>，<code>clean</code>（必须）之后重新编译即可。</p>
+<h4 id="3-将Build-Active-Architecture-Only改为Yes"><a href="#3-将Build-Active-Architecture-Only改为Yes" class="headerlink" title="3. 将Build Active Architecture Only改为Yes"></a>3. 将Build Active Architecture Only改为Yes</h4><p>在工程对应<strong>Target</strong>的<strong>Build Settings</strong>中，找到<strong>Build Active Architecture Only</strong>这一项，将<strong>Debug</strong>时的<code>No</code>改为<code>Yes</code>。</p>
+<p><img src="http://ww4.sinaimg.cn/large/762694bagw1f4j7yijjufj210s0a8acj.jpg" alt=""></p>
+<p>这一项设置的是是否仅编译当前架构的版本，如果为<code>No</code>，会编译所有架构的版本。需要注意的是，此选项在<strong>Release</strong>模式下必须为<code>No</code>，否则发布的<strong>ipa</strong>在部分设备上将不能运行。这一项更改完之后，可以显著提高编译速度。</p>
+<p>本人在设置完以上三个项之后，编译时间从1分钟左右减少到10秒左右，因此效果还是相当明显的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/08/18/core_foundation框架到foundation桥接的三种方式/" itemprop="url">
+                  Core Foundation框架到Foundation桥接的三种方式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-18T23:21:09+08:00" content="2015-08-18">
+              2015-08-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#Core Foundation框架到Foundation桥接的三种方式</p>
+<blockquote>
+<p>Foundation提供OC的基础类（像NSObject）、基本数据类型等。<br>Core Foundation框架 (CoreFoundation.framework) 是一组C语言接口，它们为iOS应用程序提供基本数据管理和服务功能。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>桥接方式</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(__bridge NSString *)(XXX);</td>
+<td>必须手动释放内存<br>CFRelease(XXX);</td>
+</tr>
+<tr>
+<td>CFBridgingRelease(XXX)</td>
+<td></td>
+</tr>
+<tr>
+<td>(__bridge_transfer NSString*) (XXX);</td>
+</tr>
+</tbody>
+</table>
+<p>注：XXX为OC的字符串</p>
+<h3 id="以一个获取通讯录联系人说明："><a href="#以一个获取通讯录联系人说明：" class="headerlink" title="以一个获取通讯录联系人说明："></a>以一个获取通讯录联系人说明：</h3><ul>
+<li>1、 导入头文件:<br><code>#import&lt;AddressBookUI/AddressBookUI.&gt;</code></li>
+<li>2、遵循代理:<br><code>ABPeoplePickerNavigationControllerDelegate</code></li>
+<li>3、实现相关代理方法:<br><code>- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker didSelectPerson:(ABRecordRef)person</code></li>
+</ul>
+<p>相关代码示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">-(void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</span><br><span class="line">    ABPeoplePickerNavigationController * peopleVC = [[ABPeoplePickerNavigationController alloc] init];</span><br><span class="line">    peopleVC.peoplePickerDelegate = self;</span><br><span class="line">    [self presentViewController:peopleVC animated:YES completion:nil];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker didSelectPerson:(ABRecordRef)person&#123;</span><br><span class="line">    </span><br><span class="line">    CFStringRef firstNameRef = ABRecordCopyValue(person, kABPersonSortByFirstName);</span><br><span class="line">    CFStringRef lastNameRef = ABRecordCopyValue(person, kABPersonSortByLastName);</span><br><span class="line">    </span><br><span class="line">#if 0</span><br><span class="line">    //桥接方式一</span><br><span class="line">    //需要手动释放内存</span><br><span class="line">    NSString *firstName = (__bridge NSString *)(firstNameRef);</span><br><span class="line">    NSString *lastName = (__bridge NSString *)(lastNameRef);</span><br><span class="line">    </span><br><span class="line">#elif 0</span><br><span class="line">    //桥接方式二</span><br><span class="line">    NSString * firstName = CFBridgingRelease(firstNameRef);</span><br><span class="line">    NSString * lastName = CFBridgingRelease(lastNameRef);</span><br><span class="line"></span><br><span class="line">#elif 1</span><br><span class="line">    //桥接方式三</span><br><span class="line">    NSString *firstName = (__bridge_transfer NSString *)(firstNameRef);</span><br><span class="line">    NSString *lastName = (__bridge_transfer  NSString *)(lastNameRef);</span><br><span class="line"></span><br><span class="line">#endif</span><br><span class="line">    NSLog(@&quot;%@  %@&quot;,firstName,lastName);</span><br><span class="line">    </span><br><span class="line">#if 0</span><br><span class="line">    CFRelease(firstNameRef);</span><br><span class="line">    CFRelease(lastNameRef);</span><br><span class="line">#endif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/08/11/断言（assert)的用法/" itemprop="url">
                   断言（ASSERT)的用法
                 </a>
@@ -2056,7 +2275,7 @@ export LANG=en_US.UTF-8</code><br>然后再使用locale命令查看，已经改�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
