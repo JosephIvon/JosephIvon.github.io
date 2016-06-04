@@ -67,7 +67,7 @@ XCode默认使用与CPU核数相同的线程来进行编译，但由于编译过
 XCode默认使用与CPU核数相同的线程来进行编译，但由于编译过程中的IO操作往往比CPU运算要多，因此适当的提升线程数可以在一定程度上加快编译速度。本人采用的是4">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/762694bagw1f4j7v1cj65j20wu0a4ace.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/762694bagw1f4j7yijjufj210s0a8acj.jpg">
-<meta property="og:updated_time" content="2016-06-04T07:24:36.000Z">
+<meta property="og:updated_time" content="2016-06-04T07:28:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加快XCode的编译链接速度">
 <meta name="twitter:description" content="加快XCode的编译链接速度提升编译链接的速度主要有以下三个方式：1. 提高XCode编译时使用的线程数defaults write com.apple.Xcode PBXNumberOfParallelBuildSubtasks 4
@@ -249,7 +249,7 @@ XCode默认使用与CPU核数相同的线程来进行编译，但由于编译过
       
 
       
-        <h2 id="加快XCode的编译链接速度"><a href="#加快XCode的编译链接速度" class="headerlink" title="加快XCode的编译链接速度"></a>加快XCode的编译链接速度</h2><h3 id="提升编译链接的速度主要有以下三个方式："><a href="#提升编译链接的速度主要有以下三个方式：" class="headerlink" title="提升编译链接的速度主要有以下三个方式："></a>提升编译链接的速度主要有以下三个方式：</h3><h4 id="1-提高XCode编译时使用的线程数"><a href="#1-提高XCode编译时使用的线程数" class="headerlink" title="1. 提高XCode编译时使用的线程数"></a>1. 提高XCode编译时使用的线程数</h4><pre><code>defaults write com.apple.Xcode PBXNumberOfParallelBuildSubtasks 4
+        <h1 id="加快XCode的编译链接速度"><a href="#加快XCode的编译链接速度" class="headerlink" title="加快XCode的编译链接速度"></a>加快XCode的编译链接速度</h1><h3 id="提升编译链接的速度主要有以下三个方式："><a href="#提升编译链接的速度主要有以下三个方式：" class="headerlink" title="提升编译链接的速度主要有以下三个方式："></a>提升编译链接的速度主要有以下三个方式：</h3><h4 id="1-提高XCode编译时使用的线程数"><a href="#1-提高XCode编译时使用的线程数" class="headerlink" title="1. 提高XCode编译时使用的线程数"></a>1. 提高XCode编译时使用的线程数</h4><pre><code>defaults write com.apple.Xcode PBXNumberOfParallelBuildSubtasks 4
 </code></pre><p>XCode默认使用与CPU核数相同的线程来进行编译，但由于编译过程中的IO操作往往比CPU运算要多，因此适当的提升线程数可以在一定程度上加快编译速度。本人采用的是4核的CPU，将线程数改为8后编译速度略有提升。</p>
 <h4 id="2-将Debug-Information-Format改为DWARF"><a href="#2-将Debug-Information-Format改为DWARF" class="headerlink" title="2. 将Debug Information Format改为DWARF"></a>2. 将Debug Information Format改为DWARF</h4><p>在工程对应<strong>Target</strong>的<strong>Build Settings</strong>中，找到<strong>Debug Information Format</strong>这一项，将<strong>Debug</strong>时的<code>DWARF with dSYM file</code>改为<code>DWARF</code>。</p>
 <p><img src="http://ww4.sinaimg.cn/large/762694bagw1f4j7v1cj65j20wu0a4ace.jpg" alt=""></p>
@@ -384,7 +384,7 @@ XCode默认使用与CPU核数相同的线程来进行编译，但由于编译过
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#加快XCode的编译链接速度"><span class="nav-number">1.</span> <span class="nav-text">加快XCode的编译链接速度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#提升编译链接的速度主要有以下三个方式："><span class="nav-number">1.1.</span> <span class="nav-text">提升编译链接的速度主要有以下三个方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-提高XCode编译时使用的线程数"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 提高XCode编译时使用的线程数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-将Debug-Information-Format改为DWARF"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 将Debug Information Format改为DWARF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-将Build-Active-Architecture-Only改为Yes"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 将Build Active Architecture Only改为Yes</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#加快XCode的编译链接速度"><span class="nav-number">1.</span> <span class="nav-text">加快XCode的编译链接速度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#提升编译链接的速度主要有以下三个方式："><span class="nav-number">1.0.1.</span> <span class="nav-text">提升编译链接的速度主要有以下三个方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-提高XCode编译时使用的线程数"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">1. 提高XCode编译时使用的线程数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-将Debug-Information-Format改为DWARF"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">2. 将Debug Information Format改为DWARF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-将Build-Active-Architecture-Only改为Yes"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">3. 将Build Active Architecture Only改为Yes</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
